@@ -1,21 +1,28 @@
 const { DataTypes } = require('sequelize');
 
-module.exports = (sequelize) => {
-    sequelize.define('pokemon', {
-        uid: {
+const Pokemons = (sequelize) => {
+    return sequelize.define('pokemon', {
+        id: { //UUID
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            allowNull: false
         },
         name: {
             type: DataTypes.STRING(20),
-            allowNull: false,
+            unique: true,
+            allowNull: false
         },
         img: {
             type: DataTypes.TEXT,
             allowNull: false
         },
         hp: {
+            type: DataTypes.INTEGER
+        },
+        atk: {
+            type: DataTypes.INTEGER
+        },
+        def: {
             type: DataTypes.INTEGER
         },
         str: {
@@ -30,18 +37,9 @@ module.exports = (sequelize) => {
         wdt: {
             type: DataTypes.INTEGER
         }
+    }, {
+        timestamps: false
     })
 };
 
-
-/*
-Pokemon con las siguientes propiedades:
-ID (Número de Pokemon) * : No puede ser un ID de un pokemon ya existente en la API pokeapi
-Nombre *
-Vida
-Fuerza
-Defensa
-Velocidad
-Altura
-Peso
-*/
+module.exports = Pokemons;
