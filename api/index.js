@@ -18,12 +18,14 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-require('dotenv').config();
 const server = require('./src/app');
-// const {conn} = require ('DB!')
+const config = require('./src/libs/config/config');
+const { CONN } = require('./src/db/connection');
 
-const { PORT, HOST } = process.env;
+const { PORT, HOST } = config;
 
-server.listen(PORT, HOST, () => {
-    console.log(`Server running on ${HOST}:${PORT}`)
+CONN.sync({ force: true }).then(() => {
+    server.listen(PORT, HOST, () => {
+        console.log(`Server running on ${HOST}:${PORT}`)
+    })
 });
