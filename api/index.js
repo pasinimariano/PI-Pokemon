@@ -24,8 +24,18 @@ const { CONN } = require('./src/db/connection');
 
 const { PORT, HOST } = config;
 
-CONN.sync({ force: true }).then(() => {
-    server.listen(PORT, HOST, () => {
-        console.log(`Server running on ${HOST}:${PORT}`)
+CONN.sync({ force: true })
+    .then(async () => {
+        try {
+            await CONN.authenticate()
+            console.log('Connection with DB has been successful')
+        } catch (error) {
+            console.error('Unable to connect to the DB: ', error)
+        }
     })
-});
+    
+    .then(() => {
+        server.listen(PORT, HOST, () => {
+            console.log(`Server running on ${HOST}:${PORT}`)
+        })
+    });

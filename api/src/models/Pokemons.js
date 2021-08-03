@@ -2,10 +2,10 @@ const { DataTypes } = require('sequelize');
 
 const Pokemons = (sequelize) => {
     return sequelize.define('pokemon', {
-        id: { //UUID
-            type: DataTypes.INTEGER,
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV1,
             primaryKey: true,
-            allowNull: false
         },
         name: {
             type: DataTypes.STRING(20),
@@ -22,7 +22,13 @@ const Pokemons = (sequelize) => {
         atk: {
             type: DataTypes.INTEGER
         },
+        spl_atk: {
+            type: DataTypes.INTEGER
+        },
         def: {
+            type: DataTypes.INTEGER
+        },
+        spl_def: {
             type: DataTypes.INTEGER
         },
         str: {

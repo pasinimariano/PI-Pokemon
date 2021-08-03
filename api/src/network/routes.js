@@ -1,4 +1,4 @@
-const pokemonsComponents = require('../components/pokemons')
+const pokemonsComponents = require('../components/pokemons/network')
 
 const routes = (server) => {
     server.use('/pokemons', pokemonsComponents);
