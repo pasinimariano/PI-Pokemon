@@ -3,8 +3,8 @@ const { DataTypes } = require('sequelize');
 const Pokemons = (sequelize) => {
     return sequelize.define('pokemon', {
         id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV1,
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
             primaryKey: true,
         },
         name: {
@@ -44,7 +44,7 @@ const Pokemons = (sequelize) => {
             type: DataTypes.INTEGER
         }
     }, {
-        timestamps: false
+        initialAutoIncrement: 152
     })
 };
 
