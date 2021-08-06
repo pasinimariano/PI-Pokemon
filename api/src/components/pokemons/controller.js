@@ -1,41 +1,123 @@
-const axios = require('axios');
+const Sequelize = require('sequelize');
+const getPokemonData = require('../functions/getPokemonData');
+const getPokemonByID = require('../functions/getPokemonByID');
+const getPokemonByName = require('../functions/getPokemonByName');
+const filterData = require('../functions/filterData');
+const Models = require('../functions/getModels');
 
-let records = [];
-let pokemons = [];
-const limit = 3;
-const ApiUrl = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`;
+const { PokemonsModel, TypesModel } = Models;
 
-const fetchData = async (url) => {
-    const response = await axios(url)
+const AllPokemonsAPI = async () => {
+    const pokemonData = await getPokemonData();
+    const response = await pokemonData.map(obj => {
+        return {
+            id: obj.data.id,
+            name: obj.data.name,
+            img: obj.data.sprites.front_default,
+            types: obj.data.types.map(obj => obj.type.name)
+        }
+    })
 
     return response
 };
 
-const getRecords = async () => {
-    await fetchData(ApiUrl)
-        .then(json => records.push(json.data.results))
-        .catch(error => error)
+const AllPokemonsDB = async () => {
+    const records = await PokemonsModel.findAll({
+        include: {
+            model: TypesModel,
+            attributes: ['name'],
+            through: {
+                attributes: []
+            }
+        }
+    });
 
     return records
 };
 
-const getAllPokemons = async () => {
-    const recordsApi = await getRecords();
-    recordsApi[0].forEach(async (obj) => {
-        await fetchData(obj.url)
-            .then(json => {
-                const singlePokemon = {
-                    id: json.order,
-                    name: json.name,
-                    types: json.types,
-                    sprite: json.sprites
-                }
-                pokemons.push(singlePokemon)
-            })
-    });
+const API_pokemonByID = async (id) => {
+    const pokemon = await getPokemonByID(id);
 
-    return pokemons
+    const response = await filterData(pokemon)
+
+    return response
 };
 
-module.exports = getAllPokemons;
+const DB_pokemonByID = async (id) => {
+    const pokemon = await PokemonsModel.findByPk(id);
 
+    return pokemon
+};
+
+const API_pokemonByNAME = async (name) => {
+    const pokemon = await getPokemonByName(name);
+
+    const response = await filterData(pokemon)
+
+    return response
+};
+
+const DB_pokemonByNAME = async (name) => {
+    const pokemon = await PokemonsModel.findAll({
+        where: {
+            name: { [Sequelize.Op.iLike]: name }
+        }
+    })
+
+    return pokemon
+};
+
+const CreateNewPokemon = async (pokemon) => {
+    const {
+        name,
+        img,
+        hp,
+        atk,
+        def,
+        spc_atk,
+        spc_def,
+        str,
+        spd,
+        hgt,
+        wdt,
+        types
+    } = pokemon;
+
+    if (!name) {
+        return 'ERROR: Se requiere un nombre.'
+    } else {
+        const newPokemon = await PokemonsModel.create({
+            name,
+            img,
+            hp,
+            atk,
+            def,
+            spc_atk,
+            spc_def,
+            str,
+            spd,
+            hgt,
+            wdt
+        });
+
+        const pokemonTypes = await TypesModel.findAll({
+            where: {
+                name : types
+            }
+        });
+
+        newPokemon.setTypes(pokemonTypes)
+
+        return `El pokemon ${name} fue creado exitosamente`
+    }
+}
+
+module.exports = {
+    AllPokemonsAPI,
+    AllPokemonsDB,
+    API_pokemonByID,
+    DB_pokemonByID,
+    API_pokemonByNAME,
+    DB_pokemonByNAME,
+    CreateNewPokemon
+}

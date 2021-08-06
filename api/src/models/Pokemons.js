@@ -9,7 +9,6 @@ const Pokemons = (sequelize) => {
         },
         name: {
             type: DataTypes.STRING(20),
-            unique: true,
             allowNull: false
         },
         img: {
@@ -22,13 +21,13 @@ const Pokemons = (sequelize) => {
         atk: {
             type: DataTypes.INTEGER
         },
-        spl_atk: {
+        spc_atk: {
             type: DataTypes.INTEGER
         },
         def: {
             type: DataTypes.INTEGER
         },
-        spl_def: {
+        spc_def: {
             type: DataTypes.INTEGER
         },
         str: {
