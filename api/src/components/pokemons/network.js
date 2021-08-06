@@ -2,11 +2,10 @@ const express = require('express');
 const server = express.Router();
 const store = require('./store');
 
-<<<<<<< HEAD
 const {
     Store,
     DetailsById,
-    DetailsByName, 
+    DetailsByName,
     CreatePokemon
 } = store
 
@@ -47,23 +46,6 @@ server.post('/', async (req, res) => {
     const response = CreatePokemon(req.body);
 
     res.send(response)
-=======
-const { Store } = store;
-const { DetailID } = store;
-
-server.get('/', async (req, res) => {
-    const response = await Store()
-    console.log('response', response)
-    res.json(response)
->>>>>>> 9ac6cfa8a423fa6aad3027a1d08e63c3e748b131
-});
-
-server.get('/:id', async (req, res) => {
-    const { id } = req.params;
-
-    const pokemonDetails = await DetailID(id);
-    console.log('idresponse', pokemonDetails)
-    res.json(pokemonDetails)
 })
 
 module.exports = server;
