@@ -17,7 +17,7 @@ server.get('/', async (req, res) => {
         const error = `ERROR 404: El nombre ${name} no fue encontrado`;
 
         if (!response) {
-            res.send(error)
+            res.status(404).send(error)
         } else {
             res.json(response)
         }
@@ -34,7 +34,7 @@ server.get('/:id', async (req, res) => {
     const error = 'ERROR: el id debe ser un valor numérico'
 
     if (isNaN(parseInt(id))) {
-        res.send(error)
+        res.status(404).send(error)
     } else {
         const pokemonDetails = await DetailsById(id);
 

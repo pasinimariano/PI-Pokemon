@@ -10,11 +10,14 @@ const ApiURLbyID = (id) => {
 
 const ApiURLbyNAME = (name) => {
     return `https://pokeapi.co/api/v2/pokemon/${name}`
-}
+};
+
+const ApiUrlTypes = 'https://pokeapi.co/api/v2/type';
 
 module.exports = {
     limit,
     ApiURL,
     ApiURLbyID,
-    ApiURLbyNAME
+    ApiURLbyNAME,
+    ApiUrlTypes
 };

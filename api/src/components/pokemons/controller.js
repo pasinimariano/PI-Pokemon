@@ -35,7 +35,6 @@ const AllPokemonsDB = async () => {
     return records
 };
 
-
 const API_pokemonByID = async (id) => {
     const pokemon = await getPokemonByID(id);
 
