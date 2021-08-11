@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import {
-    get_types,
-    filters_by_type
-} from '../../../Redux/actions/actionCreators';
+import CheckBox from '../../Reusable/CheckBoxes';
+import PokeballButton from '../../Reusable/PokeballButton';
+import { get_types, filters_by_type } from '../../../Redux/actions/actionCreators';
+import Styles from '../Style/home.module.css';
+import ButtonStyle from '../../../Style/button.module.css';
 
 
 const SideBar = ({ all_pokemon, all_types, filter, get_types }) => {
@@ -49,56 +49,39 @@ const SideBar = ({ all_pokemon, all_types, filter, get_types }) => {
     }, [all_pokemon])
 
     return (
-        <div>
-            {
-                all_types.map((value, index) => (
-                    <React.Fragment key={index}>
-                        <div>
-                            <input
-                                type='checkbox'
-                                onChange={() => handleChange(value)}
-                                checked={checked.indexOf(value) === -1 ? false : true}
-                            />
-                            <span> {value} </span>
-                        </div>
-                    </React.Fragment>
-                ))
-            }
-            <div>
-                <input
-                    type='checkbox'
-                    onChange={() => handleChange('API')}
-                    checked={checked.indexOf('API') === -1 ? false : true}
-                />
-                <span> API </span>
+        <div className={Styles.SideBarContainer}>
+            <h2 className={Styles.LabelTypes}>
+                FILTER POR TIPOS
+            </h2>
+            <div className={Styles.TypesContainer}>
+                {
+                    all_types.map((value, index) => (
+                        <React.Fragment key={index} >
+                            <CheckBox style={Styles} onChange={() => handleChange(value)} value={value.toUpperCase()}
+                                checked={checked.indexOf(value) === -1 ? false : true} />
+                        </React.Fragment>
+                    ))
+                }
             </div>
-            <div>
-                <input
-                    type='checkbox'
-                    onChange={() => handleChange('CREATED')}
-                    checked={checked.indexOf('CREATED') === -1 ? false : true}
-                />
-                <span> CREATED </span>
+            <h2 className={Styles.LabelOrder}>
+                FILTER POR ORDEN
+            </h2>
+            <div className={Styles.OrderContainer}>
+                <CheckBox style={Styles} onChange={() => handleChange('API')} value='API'
+                    checked={checked.indexOf('API') === -1 ? false : true} />
+                <CheckBox style={Styles} onChange={() => handleChange('CREATED')} value='CREATED'
+                    checked={checked.indexOf('CREATED') === -1 ? false : true} />
+                <CheckBox style={Styles} onChange={() => handleChange('BYNAME', 'BYID')} value='BY NAME'
+                    checked={checked.indexOf('API') === -1 ? false : true} />
+                <CheckBox style={Styles} onChange={() => handleChange('BYID', 'BYNAME')} value='BY ID'
+                    checked={checked.indexOf('BYID') === -1 ? false : true} />
             </div>
-            <div>
-                <input
-                    type='checkbox'
-                    onChange={() => handleChange('BYNAME', 'BYID')}
-                    checked={checked.indexOf('BYNAME') === -1 ? false : true}
-                />
-                <span> BY NAME </span>
+            <div className={Styles.ButtonContainer}>
+                <h2 className={Styles.Buttonh2}>
+                    CREAR POKEMON
+                </h2>
+                <PokeballButton to='/newPokemon' style={ButtonStyle} />
             </div>
-            <div>
-                <input
-                    type='checkbox'
-                    onChange={() => handleChange('BYID', 'BYNAME')}
-                    checked={checked.indexOf('BYID') === -1 ? false : true}
-                />
-                <span> BY ID </span>
-            </div>
-            <Link to='/newPokemon' >
-                <button> TO GO </button>
-            </Link>
         </div>
     )
 };

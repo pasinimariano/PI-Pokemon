@@ -1,42 +1,34 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import PokeballButton from '../../Reusable/PokeballButton';
+import buttonStyle from '../../../Style/button.module.css';
 
-const Cards = ({ pokemons }) => {
+const Cards = (props) => {
 
     return (
-        <div>
-            {pokemons.length === 0 ?
-                <h2> LOADING .....</h2>
-                :
-                <div>
-                    {pokemons.map(pokemon =>
-                        <div key={pokemon.id}>
-                            <h2>{pokemon.id}</h2>
-                            <h2>{pokemon.name}</h2>
-                            <img
-                                src={pokemon.img}
-                                alt={`${pokemon.name} sprite`}
-                            />
-                            <h2>{pokemon.types}</h2>
-                            <Link to={`/pokemons/${pokemon.id}`}>
-                                <button> More Details </button>
-                            </Link>
-                        </div>
+        props.AllPokemon.map(pokemon =>
+            <div key={pokemon.id} className={props.style.CardContainer}>
+                <h2 className={props.style.PokemonId}>
+                    #{pokemon.id}
+                </h2>
+                <h2 className={props.style.PokemonName}>
+                    {pokemon.name.toUpperCase()}
+                </h2>
+                <img
+                    className={props.style.PokemonSprite}
+                    src={pokemon.img}
+                    alt={`${pokemon.name} sprite`}
+                />
+                <div className={props.style.PokemonTypes}>
+                    {pokemon.types.map(type =>
+                        <h2> {type.toUpperCase()} </h2>
                     )}
                 </div>
-            }
-        </div>
+                <div className={props.style.ButtonContainer}>
+                    <PokeballButton to={`/pokemons/${pokemon.id}`} style={buttonStyle} />
+                </div>
+            </div>
+        )
     )
-}
-
-const mapStateToProps = (state) => {
-    return {
-        pokemons: state.FilteredPokemon
-    }
 };
 
-export default connect(
-    mapStateToProps,
-    null
-)(Cards);
+export default Cards;

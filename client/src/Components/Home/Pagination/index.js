@@ -1,60 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import statements from './statements';
 import { pagination } from '../../../Redux/actions/actionCreators';
+import Cards from '../Cards/';
+import Styles from '../Style/home.module.css'
 
 
 const Pagination = ({ AllPokemon, PagedPokemons, pagination }) => {
-
-    const [indexFirstPokemon, setindexFirstPokemon] = useState(0);
-    const [indexLastPokemon, setindexLastPokemon] = useState(9);
-    const pokemonXpage = 9;
+    
+    const {
+        indexFirstPokemon,
+        indexLastPokemon,
+        nextPage,
+        prevPage
+    } = statements;
 
     useEffect(() => {
         pagination(indexFirstPokemon, indexLastPokemon)
-    }, [AllPokemon])
+    }, [AllPokemon]);
 
     useEffect(() => {
         pagination(indexFirstPokemon, indexLastPokemon)
-    }, [indexFirstPokemon])
-
-    const nextPage = () => {
-        if (indexLastPokemon < AllPokemon.length) {
-            setindexFirstPokemon(indexFirstPokemon + pokemonXpage);
-            setindexLastPokemon(indexLastPokemon + pokemonXpage);
-        }
-    };
-
-    const prevPage = () => {
-        if (indexFirstPokemon > 0) {
-            setindexFirstPokemon(indexFirstPokemon - pokemonXpage)
-            setindexLastPokemon(indexLastPokemon - pokemonXpage)
-        }
-    };
+    }, [indexFirstPokemon]);
 
     return (
         <div>
-            <button onClick={nextPage}>SIGUIENTE</button>
-            <button onClick={prevPage}>ANTERIOR</button>
+            <div className={Styles.ButtonNextContainer}>
+                <button onClick={() => nextPage(AllPokemon)} className={Styles.NextButton}>
+                    SIGUIENTE
+                </button>
+            </div>
+            <div className={Styles.ButtonPrevContainer}>
+                <button onClick={prevPage} className={Styles.PrevButton}>
+                    ANTERIOR
+                </button>
+            </div>
             {
                 PagedPokemons.length === 0 ?
                     <h2>LOADING...</h2>
                     :
                     <div>
-                        {PagedPokemons.map(pokemon =>
-                            <div key={pokemon.id}>
-                                <h2>{pokemon.id}</h2>
-                                <h2>{pokemon.name}</h2>
-                                <img
-                                    src={pokemon.img}
-                                    alt={`${pokemon.name} sprite`}
-                                />
-                                <h2>{pokemon.types}</h2>
-                                <Link to={`/pokemons/${pokemon.id}`}>
-                                    <button> More Details </button>
-                                </Link>
-                            </div>
-                        )}
+                        <Cards AllPokemon={PagedPokemons} style={Styles} />
                     </div>
             }
         </div>

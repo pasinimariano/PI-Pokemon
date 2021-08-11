@@ -1,0 +1,86 @@
+.SideBarContainer {
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 18vw;
+}
+
+.TypesContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(10, 20px);
+}
+
+.OrderContainer {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(4, 25px);
+}
+
+.CardContainer {
+    background-image: url(../../../img/cardBackground.jpg);
+    background-size: 100%;
+    margin: 15px;
+    height: 40vh;
+    width: 20vw;
+    display: grid;
+    grid-template-columns: 5% repeat(2, 45%) 5%;
+    grid-template-rows:  5% repeat(2, 10%) 40% 10% 20% 5%;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    -moz-box-shadow: 11px 9px 18px #000000;
+    -webkit-box-shadow: 11px 9px 18px #000000;
+    box-shadow: 11px 9px 18px #000000;
+}
+
+.PokemonName {
+    font-size: 20px;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+
+.PokemonSprite {
+    width: 75%;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+
+.PokemonTypes {
+    font-size: 10px;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 5;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #a8be189a;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    -moz-box-shadow: 11px 9px 18px #000000;
+    -webkit-box-shadow: 11px 9px 18px #000000;
+    box-shadow: 11px 9px 18px #000000;
+}
+
+.ButtonContainer {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 6;
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-self: center;
+}
+
+

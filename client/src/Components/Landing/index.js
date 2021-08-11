@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { get_pokemons, get_types } from '../../Redux/actions/actionCreators';
-import Styles from './Style/index.module.css'
+import PokeballButton from '../Reusable/PokeballButton';
+import Styles from './Style/index.module.css';
+import ButtonStyle from '../../Style/button.module.css';
 
 
 const Landing = ({ get_pokemons, get_types }) => {
@@ -13,10 +14,11 @@ const Landing = ({ get_pokemons, get_types }) => {
     }, []);
 
     return (
-        <div className={Styles.Container}>
-            <Link to='/pokemons' className={Styles.Link}>
-                <button className={Styles.Button}> Enter </button>
-            </Link>
+        <div className={Styles.MainContainer}>
+            <div className={Styles.ButtonContainer}>
+                <PokeballButton to='/pokemons' style={ButtonStyle} />
+                <h2> ENTER </h2>
+            </div>
         </div>
     );
 };
