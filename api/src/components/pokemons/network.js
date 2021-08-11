@@ -9,8 +9,10 @@ const {
     CreatePokemon
 } = store
 
-server.get('/', async (req, res) => {
-    const { name } = req.query;
+server.get('/', async (req, res, next) => {
+    const {
+        name
+    } = req.query;
 
     if (name) {
         const response = await DetailsByName(name);
@@ -23,9 +25,12 @@ server.get('/', async (req, res) => {
         }
 
     } else {
-        const response = await Store();
-
-        res.json(response)
+        try {
+            const pokemons = await Store();
+            res.json(pokemons)
+        } catch (error) {
+            res.status(500).send(error.message)
+        }
     }
 });
 

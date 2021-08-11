@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { get_pokemons, get_types } from '../../Redux/actions/actionCreators';
+import Styles from './Style/index.module.css'
 
 
 const Landing = ({ get_pokemons, get_types }) => {
@@ -12,10 +13,9 @@ const Landing = ({ get_pokemons, get_types }) => {
     }, []);
 
     return (
-        <div>
-            <h2> WELCOME!! </h2>
-            <Link to='/pokemons'>
-                <button> Enter </button>
+        <div className={Styles.Container}>
+            <Link to='/pokemons' className={Styles.Link}>
+                <button className={Styles.Button}> Enter </button>
             </Link>
         </div>
     );

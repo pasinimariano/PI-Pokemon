@@ -1,0 +1,18 @@
+.Container {
+    /* background-image: url(../../../img/LandingPage.png); */
+    background-color: green;
+    width: 95vw;
+    height: 95vh;
+    display: grid;
+    /* display: grid;
+    grid-template-columns: 200px 150px; */
+    background-size: 85%;
+}
+
+.Button {
+    background-color: red;
+}
+
+display: grid;
+grid-template-columns: 15px 30px 200px 30px 15px;
+grid-template-rows: 15px 30px 200px;

@@ -1,6 +1,7 @@
 import {
     GET_ALL_POKEMONS,
     FILTERS,
+    PAGINATION,
     POKEMON_BY_ID,
     DELETE_DETAILS,
     GET_ALL_TYPES
@@ -16,9 +17,15 @@ export const get_pokemons = () => {
     }
 };
 
-export const filters = (array) => {
+export const filters_by_type = (array) => {
     return {
         type: FILTERS, payload: array
+    }
+};
+
+export const pagination = (page, offset) => {
+    return {
+        type: PAGINATION, payload: { page, offset }
     }
 };
 
