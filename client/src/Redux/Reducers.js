@@ -29,7 +29,6 @@ const rootReducer = (state = initialState, action) => {
                 Pagination: state.FilteredPokemon.slice(action.payload.page, action.payload.offset)
             }
         case FILTER_BY_NAME: {
-            console.log(action.payload)
             const filter = state.AllPokemon.filter(obj => obj.name === action.payload.name);
             return {
                 ...state,
