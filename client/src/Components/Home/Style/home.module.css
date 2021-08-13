@@ -1,10 +1,17 @@
 .SideBarContainer {
-    background-color: red;
+    background-color: rgb(220,10,45);
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    width: 18vw;
-}
+    height: 180vh;
+    width: 94%;
+    border:inset 8px #000000;
+    -moz-border-radius-topleft: 43px;
+    -moz-border-radius-bottomleft:41px;
+    -webkit-border-top-left-radius:43px;
+    -webkit-border-bottom-left-radius:41px;
+    border-top-left-radius:43px;
+    border-bottom-left-radius:43px;
+    }
 
 .TypesContainer {
     display: grid;
@@ -18,11 +25,71 @@
     grid-template-rows: repeat(4, 25px);
 }
 
+.Headers {
+    background-color: rgb(220,10,45);
+    display: flex;
+    flex-direction: column;
+    border:outset 8px #000000;
+    border-left: 0;
+
+}
+
+.FormContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.InputName {
+    display: flex;
+    margin-right: 25px;
+}
+
+.ContainerButtons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Buttons {
+    display: inline-block;
+    padding: 0.46em 1.6em;
+    border: 0.1em solid black;
+    margin: 1 0.2em 0.2em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    color: black;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    background-color: rgb(40, 171, 253);
+    text-align: center;
+    transition: all 0.15s;
+}
+
+.Buttons:hover {
+    text-shadow: 0 0 2em rgba(255,255,255,1);
+    color: azure;
+    border-color: azure;
+}
+
+.CardsContainer {
+    background-image: url(https://wallpapercave.com/wp/wp2711114.gif);
+    background-size: 200%;
+    background-repeat: no-repeat;
+    height: 166vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border:outset 8px #000000;
+    border-top: 0;
+    border-left: 0;
+}
+
 .CardContainer {
-    background-image: url(../../../img/cardBackground.jpg);
-    background-size: 100%;
+    background-color: rgba(0, 0, 0, 0.63);
     margin: 15px;
-    height: 40vh;
+    height: 50vh;
     width: 20vw;
     display: grid;
     grid-template-columns: 5% repeat(2, 45%) 5%;
@@ -33,6 +100,15 @@
     -moz-box-shadow: 11px 9px 18px #000000;
     -webkit-box-shadow: 11px 9px 18px #000000;
     box-shadow: 11px 9px 18px #000000;
+}
+
+.PokemonId {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    display: flex;
+    justify-self: flex-start;
+    align-self: center;
 }
 
 .PokemonName {
@@ -46,7 +122,7 @@
 }
 
 .PokemonSprite {
-    width: 75%;
+    width: 80%;
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 4;
@@ -64,7 +140,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: #a8be189a;
+    background-color: rgba(0, 0, 0, 0.63);
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     border-radius: 7px;
@@ -82,5 +158,3 @@
     align-items: flex-start;
     justify-self: center;
 }
-
-

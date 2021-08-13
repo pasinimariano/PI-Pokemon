@@ -1,5 +1,6 @@
 import {
     GET_ALL_POKEMONS,
+    FILTER_BY_NAME,
     FILTERS,
     PAGINATION,
     GET_ALL_TYPES,
@@ -9,6 +10,7 @@ import {
 
 const initialState = {
     AllPokemon: [],
+    FilteredPokemon: [],
     Pagination: [],
     AllTypes: [],
     PokemonDetails: []
@@ -24,13 +26,21 @@ const rootReducer = (state = initialState, action) => {
         case PAGINATION:
             return {
                 ...state,
-                Pagination: state.AllPokemon.slice(action.payload.page, action.payload.offset)
+                Pagination: state.FilteredPokemon.slice(action.payload.page, action.payload.offset)
             }
+        case FILTER_BY_NAME: {
+            console.log(action.payload)
+            const filter = state.AllPokemon.filter(obj => obj.name === action.payload.name);
+            return {
+                ...state,
+                FilteredPokemon: filter
+            }
+        }
         case FILTERS:
             if (action.payload.length === 0) {
                 return {
                     ...state,
-                    Pagination: state.AllPokemon
+                    FilteredPokemon: state.AllPokemon
                 }
             } if (action.payload.includes('API')) {
                 return {
@@ -49,7 +59,7 @@ const rootReducer = (state = initialState, action) => {
             } if (action.payload.includes('BYNAME')) {
                 return {
                     ...state,
-                    Pagination: state.AllPokemon.sort((a, b) => {
+                    FilteredPokemon: state.AllPokemon.sort((a, b) => {
                         if (a.name > b.name) return 1
                         else return -1
                     })
@@ -57,14 +67,14 @@ const rootReducer = (state = initialState, action) => {
             } if (action.payload.includes('BYID')) {
                 return {
                     ...state,
-                    Pagination: state.AllPokemon.sort((a, b) => {
+                    FilteredPokemon: state.AllPokemon.sort((a, b) => {
                         return a.id - b.id
                     })
                 }
             } else
                 return {
                     ...state,
-                    Pagination: state.AllPokemon.filter(obj =>
+                    FilteredPokemon: state.AllPokemon.filter(obj =>
                         action.payload.some(type =>
                             obj.types.includes(type)
                         ))

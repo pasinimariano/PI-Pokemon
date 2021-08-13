@@ -8,6 +8,7 @@ const PokeballButton = (props) => {
                 className={props.style.ButtonPokeball}
                 src={Pokeball}
                 alt='Pokeball Button'
+                type={props.style}
             />
         </Link>
     )

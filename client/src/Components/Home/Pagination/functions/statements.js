@@ -20,7 +20,14 @@ const Statements = () => {
         }
     };
 
-    return { indexFirstPokemon, indexLastPokemon, nextPage, prevPage }
+    return {
+        indexFirstPokemon,
+        setindexFirstPokemon,
+        indexLastPokemon,
+        setindexLastPokemon,
+        nextPage,
+        prevPage
+    }
 };
 
 export default Statements;

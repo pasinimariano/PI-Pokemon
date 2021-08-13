@@ -1,0 +1,6 @@
+.Container {
+    width: 95vw;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 20% 80%;
+}

@@ -63,15 +63,18 @@ const useForm = (validate) => {
         setErrors(validate(values));
     };
 
-    useEffect(async () => {
-        const url = await randomImg();
-        setValues({
-            ...values,
-            img: url
-        })
-    }, [])
+    useEffect(() => {
+        const getImg = async () => {
+            const url = await randomImg();
+            setValues({
+                ...values,
+                img: url
+            })
+        }
+        getImg();
+    }, []);
 
-    return { values, errors, handleChange, handleErrors, handleSubmit, handleTypes };
+    return { values, setValues, errors, handleChange, handleErrors, handleSubmit, handleTypes };
 };
 
 export default useForm;

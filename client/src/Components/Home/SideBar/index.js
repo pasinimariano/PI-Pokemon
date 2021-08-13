@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import CheckBox from '../../Reusable/CheckBoxes';
 import PokeballButton from '../../Reusable/PokeballButton';
-import { get_types, filters_by_type } from '../../../Redux/actions/actionCreators';
+import { get_types, filters } from '../../../Redux/actions/actionCreators';
 import Styles from '../Style/home.module.css';
 import ButtonStyle from '../../../Style/button.module.css';
 
@@ -12,7 +12,6 @@ const SideBar = ({ all_pokemon, all_types, filter, get_types }) => {
     const [checked, setChecked] = useState([]);
 
     const handleChange = (value, del) => {
-
         if (del) {
             if (value === 'BYID') {
                 let index = checked.indexOf(del);
@@ -50,8 +49,11 @@ const SideBar = ({ all_pokemon, all_types, filter, get_types }) => {
 
     return (
         <div className={Styles.SideBarContainer}>
+            <h2 className={Styles.LabelFilter}>
+                FILTROS
+            </h2>
             <h2 className={Styles.LabelTypes}>
-                FILTER POR TIPOS
+                POR TIPOS
             </h2>
             <div className={Styles.TypesContainer}>
                 {
@@ -64,23 +66,26 @@ const SideBar = ({ all_pokemon, all_types, filter, get_types }) => {
                 }
             </div>
             <h2 className={Styles.LabelOrder}>
-                FILTER POR ORDEN
+                POR ORDEN
             </h2>
             <div className={Styles.OrderContainer}>
-                <CheckBox style={Styles} onChange={() => handleChange('API')} value='API'
+                <CheckBox style={Styles} onChange={() => handleChange('API')} value='EXISTENTES'
                     checked={checked.indexOf('API') === -1 ? false : true} />
-                <CheckBox style={Styles} onChange={() => handleChange('CREATED')} value='CREATED'
+                <CheckBox style={Styles} onChange={() => handleChange('CREATED')} value='CREADOS'
                     checked={checked.indexOf('CREATED') === -1 ? false : true} />
-                <CheckBox style={Styles} onChange={() => handleChange('BYNAME', 'BYID')} value='BY NAME'
-                    checked={checked.indexOf('API') === -1 ? false : true} />
-                <CheckBox style={Styles} onChange={() => handleChange('BYID', 'BYNAME')} value='BY ID'
+                <CheckBox style={Styles} onChange={() => handleChange('BYNAME', 'BYID')} value='POR NOMBRE'
+                    checked={checked.indexOf('BYNAME') === -1 ? false : true} />
+                <CheckBox style={Styles} onChange={() => handleChange('BYID', 'BYNAME')} value='POR ID'
                     checked={checked.indexOf('BYID') === -1 ? false : true} />
             </div>
-            <div className={Styles.ButtonContainer}>
+            <div>
                 <h2 className={Styles.Buttonh2}>
                     CREAR POKEMON
                 </h2>
                 <PokeballButton to='/newPokemon' style={ButtonStyle} />
+                <div className={Styles.BottomSideBar}>
+
+                </div>
             </div>
         </div>
     )
@@ -96,7 +101,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         get_types: () => dispatch(get_types()),
-        filter: (array) => dispatch(filters_by_type(array)),
+        filter: (array) => dispatch(filters(array)),
     };
 };
 

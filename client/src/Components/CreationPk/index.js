@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import useForm from './functions/useForm';
-import validate from './functions/validate';
+import useForm from '../Reusable/FormControl/useForm';
+import validate from '../Reusable/FormControl/validate';
 import FormsGroup from '../Reusable/input';
 
 

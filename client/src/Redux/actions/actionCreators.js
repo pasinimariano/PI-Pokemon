@@ -1,5 +1,6 @@
 import {
     GET_ALL_POKEMONS,
+    FILTER_BY_NAME,
     FILTERS,
     PAGINATION,
     POKEMON_BY_ID,
@@ -17,7 +18,17 @@ export const get_pokemons = () => {
     }
 };
 
-export const filters_by_type = (array) => {
+export const filter_by_name = (name) => {
+    return dispatch => {
+        return fetch(`http://localhost:3001/pokemons?name=${name}`)
+            .then(response => response.json())
+            .then(json => {
+                dispatch({ type: FILTER_BY_NAME, payload: json })
+            })
+    }
+}
+
+export const filters = (array) => {
     return {
         type: FILTERS, payload: array
     }
