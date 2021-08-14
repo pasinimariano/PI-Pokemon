@@ -1,0 +1,5 @@
+.Container {
+    width: 95vw;
+    display: flex;
+    margin:auto;
+};

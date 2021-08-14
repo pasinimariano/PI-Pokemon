@@ -33,7 +33,7 @@ const useForm = (validate) => {
         const valueIndex = values.types.indexOf(checked);
         const newChecked = [...values.types];
 
-        if (newChecked.length > 2) {
+        if (newChecked.length > 1) {
             newChecked.shift()
         };
 

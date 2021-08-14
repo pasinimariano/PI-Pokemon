@@ -1,5 +1,5 @@
 .SideBarContainer {
-    background-color: rgb(220,10,45);
+    background-color: azure;
     display: flex;
     flex-direction: column;
     height: 180vh;
@@ -11,7 +11,7 @@
     -webkit-border-bottom-left-radius:41px;
     border-top-left-radius:43px;
     border-bottom-left-radius:43px;
-    }
+}
 
 .TypesContainer {
     display: grid;
@@ -25,8 +25,14 @@
     grid-template-rows: repeat(4, 25px);
 }
 
+.MainContainer {
+    width: 100%;
+    background-color: chocolate;
+}
+
 .Headers {
-    background-color: rgb(220,10,45);
+    background-color: azure;
+    height: 7%;
     display: flex;
     flex-direction: column;
     border:outset 8px #000000;
@@ -51,39 +57,14 @@
     justify-content: space-around;
 }
 
-.Buttons {
-    display: inline-block;
-    padding: 0.46em 1.6em;
-    border: 0.1em solid black;
-    margin: 1 0.2em 0.2em 0;
-    border-radius: 0.12em;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-weight: 300;
-    color: black;
-    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
-    background-color: rgb(40, 171, 253);
-    text-align: center;
-    transition: all 0.15s;
-}
-
-.Buttons:hover {
-    text-shadow: 0 0 2em rgba(255,255,255,1);
-    color: azure;
-    border-color: azure;
-}
-
 .CardsContainer {
     background-image: url(https://wallpapercave.com/wp/wp2711114.gif);
     background-size: 200%;
     background-repeat: no-repeat;
-    height: 166vh;
+    height: 91%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    border:outset 8px #000000;
-    border-top: 0;
-    border-left: 0;
 }
 
 .CardContainer {

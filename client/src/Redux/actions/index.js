@@ -5,3 +5,4 @@ export const PAGINATION = 'PAGINATION';
 export const GET_ALL_TYPES = 'GET_ALL_TYPES';
 export const POKEMON_BY_ID = 'POKEMON_BY_ID';
 export const DELETE_DETAILS = 'DELETE_DETAILS';
+export const POST_POKEMON = 'POST_POKEMON'

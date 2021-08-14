@@ -5,7 +5,8 @@ import {
     PAGINATION,
     POKEMON_BY_ID,
     DELETE_DETAILS,
-    GET_ALL_TYPES
+    GET_ALL_TYPES,
+    POST_POKEMON
 } from ".";
 
 export const get_pokemons = () => {
@@ -65,3 +66,7 @@ export const delete_details = () => {
         type: DELETE_DETAILS
     }
 };
+
+export const post_pokemon = (pokemon) => {
+    
+}

@@ -7,6 +7,7 @@ import validate from '../../Reusable/FormControl/validate';
 import FormsGroup from '../../Reusable/input';
 import Cards from '../Cards/';
 import Styles from '../Style/home.module.css';
+import ButtonStyles from '../../../Style/button.module.css'
 
 
 
@@ -47,21 +48,21 @@ const Pagination = ({ AllPokemon, FilteredPokemon, PagedPokemons, pagination, fi
 
 
     return (
-        <div>
+        <div className={Styles.MainContainer}>
             <div className={Styles.Headers}>
                 <form onSubmit={handleSubmit} className={Styles.FormContainer}>
                     <FormsGroup id='name' type='text' name='name' placeholder='POKEMON NAME' value={values.name}
                         onChange={handleChange} onBlur={handleErrors} className={Styles.InputName} error={errors.name} />
-                    <button className={Styles.Buttons} type='submit'> BUSCAR</button>
+                    <button className={ButtonStyles.Buttons} type='submit'> BUSCAR</button>
                 </form>
                 <div className={Styles.ContainerButtons}>
                     <div className={Styles.ButtonNextContainer}>
-                        <button onClick={() => nextPage(FilteredPokemon)} className={Styles.Buttons}>
+                        <button onClick={() => nextPage(FilteredPokemon)} className={ButtonStyles.Buttons}>
                             SIGUIENTE
                         </button>
                     </div>
                     <div className={Styles.ButtonPrevContainer}>
-                        <button onClick={prevPage} className={Styles.Buttons}>
+                        <button onClick={prevPage} className={ButtonStyles.Buttons}>
                             ANTERIOR
                         </button>
                     </div>
