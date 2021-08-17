@@ -5,14 +5,14 @@ const Statements = () => {
 
     const handleChecked = (value, del) => {
         if (del) {
-            if (value === 'BYID') {
-                let index = checked.indexOf(del);
-                if (index !== -1) { checked.splice(index, 1) }
-            }
-            if (value === 'BYNAME') {
-                let index = checked.indexOf(del);
-                if (index !== -1) { checked.splice(index, 1) }
-            }
+            let index0 = checked.indexOf(del[0]);
+            let index1 = checked.indexOf(del[1]);
+            let index2 = checked.indexOf(del[2]);
+
+            if (index0 !== -1) { checked.splice(index0, 1) }
+            if (index1 !== -1) { checked.splice(index1, 1) }
+            if (index2 !== -1) { checked.splice(index2, 1) }
+
         };
 
         const valueIndex = checked.indexOf(value);

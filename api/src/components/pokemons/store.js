@@ -14,7 +14,6 @@ const {
 const Store = async () => {
     const APIdata = await AllPokemonsAPI();
     const DBdata = await AllPokemonsDB();
-
     const concatedData = APIdata.concat(DBdata);
 
     return concatedData
@@ -34,15 +33,14 @@ const DetailsById = async (id) => {
 
 const DetailsByName = async (name) => {
     const ApiData = await API_pokemonByNAME(name);
-    let DbData = await DB_pokemonByNAME(name);
+    const DbData = await DB_pokemonByNAME(name);
+   
+    const ApiCondition = Object.keys(ApiData).length !== 0;
+    const DbCondition = DbData.length !== 0;
 
-    if (DbData.length !== 0) {
-        DbData = await DbData.map(obj => obj.dataValues)
-    }
-
-    if (!ApiData && DbData.length === 0) return null;
-    else if (ApiData && DbData.length === 0) return ApiData;
-    else if (!ApiData && DbData) return DbData;
+    if (!ApiCondition && !DbCondition) return null;
+    else if (ApiCondition && !ApiCondition) return [ApiData];
+    else if (!ApiCondition && ApiCondition) return [DbData];
     else return DbData.concat(ApiData)
 
 };

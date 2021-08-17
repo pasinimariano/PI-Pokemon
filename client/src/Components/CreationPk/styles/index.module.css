@@ -1,0 +1,49 @@
+.MainContainer{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 5% 30% 60% 5%;
+    grid-template-rows: 20% 60% 20%;
+}
+
+.Title {
+    grid-column-start: 2;
+    grid-row-start: 1;
+}
+
+.FormContainer {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.InputsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.TypesContainer{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+
+.NameContainer {
+    grid-column-start: 3;
+    grid-row-start: 1;
+    margin: auto;
+}
+
+.RightContainer {
+    grid-column-start: 3;
+    grid-row-start: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.RightContainer img {
+    width: 40%;
+}

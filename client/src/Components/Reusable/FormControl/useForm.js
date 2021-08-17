@@ -12,7 +12,6 @@ const useForm = (validate) => {
         def: '',
         spc_atk: '',
         spc_def: '',
-        str: '',
         spd: '',
         hgt: '',
         wdt: '',
@@ -57,12 +56,6 @@ const useForm = (validate) => {
         }))
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        setErrors(validate(values));
-    };
-
     useEffect(() => {
         const getImg = async () => {
             const url = await randomImg();
@@ -74,7 +67,7 @@ const useForm = (validate) => {
         getImg();
     }, []);
 
-    return { values, setValues, errors, handleChange, handleErrors, handleSubmit, handleTypes };
+    return { values, setValues, errors, handleChange, handleErrors, handleTypes };
 };
 
 export default useForm;

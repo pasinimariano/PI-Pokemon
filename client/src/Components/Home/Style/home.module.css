@@ -22,12 +22,13 @@
 .OrderContainer {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: repeat(4, 25px);
+    grid-template-rows: repeat(5, 20px);
 }
 
 .MainContainer {
     width: 100%;
-    background-color: chocolate;
+    height: 182vh;
+    background-image: url('https://i.pinimg.com/originals/5b/65/a9/5b65a951f8ec91380406f253159ff065.jpg');
 }
 
 .Headers {
@@ -37,7 +38,6 @@
     flex-direction: column;
     border:outset 8px #000000;
     border-left: 0;
-
 }
 
 .FormContainer {
@@ -55,20 +55,22 @@
     margin-top: 25px;
     display: flex;
     justify-content: space-around;
+    flex-direction: row;
 }
 
 .CardsContainer {
-    background-image: url(https://wallpapercave.com/wp/wp2711114.gif);
-    background-size: 200%;
-    background-repeat: no-repeat;
-    height: 91%;
+    height: 166vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    border:inset 8px #000000;
+    border-left: 0;
+    border-top: 0;
 }
 
 .CardContainer {
-    background-color: rgba(0, 0, 0, 0.63);
+    background-color: rgba(0, 0, 0, 0.60);
+    color: rgb(189, 55, 15);
     margin: 15px;
     height: 50vh;
     width: 20vw;
@@ -113,7 +115,6 @@
 }
 
 .PokemonTypes {
-    font-size: 10px;
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 5;
@@ -128,6 +129,10 @@
     -moz-box-shadow: 11px 9px 18px #000000;
     -webkit-box-shadow: 11px 9px 18px #000000;
     box-shadow: 11px 9px 18px #000000;
+}
+
+.TypeImg {
+    width: 30%;
 }
 
 .ButtonContainer {

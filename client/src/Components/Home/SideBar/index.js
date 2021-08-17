@@ -1,37 +1,31 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import CheckBoxControl from '../../Reusable/CheckBoxControl/';
-import MapTypes from '../../Reusable/mapTypes';
+import OrderState from './modules/orderState';
 import OrderFilter from './modules/orderFilter';
-import CreatePK from './modules/createPK';  
-import { get_types, filters } from '../../../Redux/actions/actionCreators';
+import MapTypes from '../../Reusable/mapTypes';
+import CreatePK from './modules/createPK';
+import { filters } from '../../../Redux/actions/actionCreators';
 import Styles from '../Style/home.module.css';
 import ButtonStyle from '../../../Style/button.module.css';
 
 
-const SideBar = ({ all_pokemon, all_types, filter, get_types }) => {
+const SideBar = (props) => {
 
-    const { checked, handleChecked } = CheckBoxControl();
-
-    useEffect(() => {
-        get_types()
-    }, [])
+    const { all_pokemon, all_types, filter, checked, handleChecked } = props
 
     useEffect(() => {
         filter(checked);
-    }, [checked]);
-
-    useEffect(() => {
-        filter(checked);
-    }, [all_pokemon])
+    }, [filter, checked, all_pokemon])
 
     return (
         <div className={Styles.SideBarContainer}>
             <h2 className={Styles.LabelFilter}> FILTROS </h2>
-            <h2 className={Styles.LabelTypes}> POR TIPOS </h2>
-            <MapTypes Styles={Styles} all_types={all_types} handleChecked={handleChecked} checked={checked} />
+            <h2 className={Styles.LabelState}> POR ESTADO </h2>
+            <OrderState Styles={Styles} handleChecked={handleChecked} checked={checked} />
             <h2 className={Styles.LabelOrder}> POR ORDEN </h2>
             <OrderFilter Styles={Styles} handleChecked={handleChecked} checked={checked} />
+            <h2 className={Styles.LabelTypes}> POR TIPOS </h2>
+            <MapTypes Styles={Styles} all_types={all_types} handleChecked={handleChecked} checked={checked} />
             <CreatePK Styles={Styles} ButtonStyle={ButtonStyle} />
         </div>
     )
@@ -46,7 +40,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        get_types: () => dispatch(get_types()),
         filter: (array) => dispatch(filters(array)),
     };
 };
@@ -55,3 +48,4 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(SideBar);
+

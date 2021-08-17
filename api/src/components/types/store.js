@@ -2,17 +2,19 @@ const controller = require('./controller');
 
 const {
     getTypesDB,
-    createDB
+    getANDcreate
 } = controller;
 
 const responseTypes = async () => {
     const recordsDB = await getTypesDB();
 
     if (recordsDB.length === 0) {
-        const createRecords = await createDB();
+        const createRecords = await getANDcreate();
+
         return createRecords
     } else {
-        const response = await recordsDB.map(obj => obj.dataValues.name)
+        const response = await recordsDB.map(obj => obj.name)
+
         return response
     }
 };

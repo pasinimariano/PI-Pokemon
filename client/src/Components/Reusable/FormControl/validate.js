@@ -37,12 +37,6 @@ const validate = (values) => {
         errors.spc_def = 'El campo debe ser númerico'
     };
 
-    if(!values.str) {
-        errors.str = 'El campo esta vacio'
-    } else if (!/^[0-9]+$/.test(values.str)) {
-        errors.str = 'El campo debe ser númerico'
-    };
-
     if(!values.spd) {
         errors.spd = 'El campo esta vacio'
     } else if (!/^[0-9]+$/.test(values.spd)) {
@@ -59,10 +53,6 @@ const validate = (values) => {
         errors.wdt = 'El campo esta vacio'
     } else if (!/^[0-9]+$/.test(values.wdt)) {
         errors.wdt = 'El campo debe ser númerico'
-    };
-
-    if(values.types.length === 0) {
-        errors.types = 'Selecciona al menos un type para tu Pokemon'
     };
 
     return errors

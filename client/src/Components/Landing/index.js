@@ -11,7 +11,7 @@ const Landing = ({ get_pokemons, get_types }) => {
     useEffect(() => {
         get_pokemons()
         get_types()
-    }, []);
+    }, [get_pokemons, get_types]);
 
     return (
         <div className={Styles.MainContainer}>

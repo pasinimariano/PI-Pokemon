@@ -6,33 +6,30 @@ const { ApiUrlTypes } = API;
 
 const { TypesModel } = Models;
 
-const getTypesAPI = async () => {
-    const apiResponse = await fetchData(ApiUrlTypes);
-
-    const pokemonTypes = await apiResponse.data.results.map(obj => obj.name);
-
-    return pokemonTypes
-};
-
 const getTypesDB = async () => {
     const recordsDB = await TypesModel.findAll();
 
     return recordsDB
 };
 
-const createDB = async () => {
-    const apiResponse = await getTypesAPI()
+const getANDcreate = async () => {
+    const apiResponse = await fetchData(ApiUrlTypes);
 
-    await apiResponse.forEach(type => {
-        TypesModel.create({
-            name: type
+    const pokemonTypes = await apiResponse.data.results.map(obj => obj.name);
+    
+    try {
+        pokemonTypes.forEach(type => {
+            TypesModel.create({
+                name: type
+            })
         })
-    });
-
-    return 'Success'
+        return 'Success'
+    } catch (error) {
+        return `Error: ${error}`
+    }
 };
 
 module.exports = {
     getTypesDB,
-    createDB
+    getANDcreate
 };

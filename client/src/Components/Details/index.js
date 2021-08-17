@@ -10,6 +10,7 @@ import TypesStyles from '../../Style/types.module.css';
 import ButtonStyles from '../../Style/button.module.css'
 
 const Card = (props) => {
+
     const {
         get_pokemon,
         delete_details,
@@ -20,7 +21,7 @@ const Card = (props) => {
     useEffect(() => {
         delete_details()
         get_pokemon(match.id)
-    }, []);
+    }, [delete_details, get_pokemon, match]);
 
     return (
         <div>

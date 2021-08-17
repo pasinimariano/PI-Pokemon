@@ -39,7 +39,7 @@ server.get('/:id', async (req, res) => {
     const error = 'ERROR: el id debe ser un valor numérico'
 
     if (isNaN(parseInt(id))) {
-        res.status(404).send(error)
+        res.status(400).send(error)
     } else {
         const pokemonDetails = await DetailsById(id);
 
@@ -48,10 +48,9 @@ server.get('/:id', async (req, res) => {
 });
 
 server.post('/', async (req, res) => {
-    const response = CreatePokemon(req.body);
+    const response = await CreatePokemon(req.body.pokemon);
 
-    res.send(response)
+    res.json(response)
 })
 
 module.exports = server;
-

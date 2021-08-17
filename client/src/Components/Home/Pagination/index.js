@@ -4,24 +4,21 @@ import { pagination, filter_by_name } from '../../../Redux/actions/actionCreator
 import Statements from './functions/statements';
 import UseForm from '../../Reusable/FormControl/useForm';
 import validate from '../../Reusable/FormControl/validate';
-import FormsGroup from '../../Reusable/input';
-import Cards from '../Cards/';
+import Header from './modules/header';
+import Body from './modules/body';
 import Styles from '../Style/home.module.css';
 import ButtonStyles from '../../../Style/button.module.css'
 
 
 
-const Pagination = ({ AllPokemon, FilteredPokemon, PagedPokemons, pagination, filter_by_name }) => {
-
+const Pagination = (props) => {
+    const { AllPokemon, FilteredPokemon, PagedPokemons, pagination, filter_by_name, checked } = props;
+    const { values, errors, handleChange, handleErrors, setValues } = UseForm(validate);
     const {
         indexFirstPokemon, setindexFirstPokemon,
         indexLastPokemon, setindexLastPokemon,
         nextPage, prevPage
     } = Statements();
-
-    const {
-        values, errors, handleChange, handleErrors, setValues
-    } = UseForm(validate);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -34,48 +31,20 @@ const Pagination = ({ AllPokemon, FilteredPokemon, PagedPokemons, pagination, fi
 
     useEffect(() => {
         pagination(indexFirstPokemon, indexLastPokemon)
-    }, [AllPokemon]);
-
-    useEffect(() => {
-        pagination(indexFirstPokemon, indexLastPokemon)
-    }, [indexFirstPokemon]);
+    }, [pagination, indexFirstPokemon, indexLastPokemon, AllPokemon]);
 
     useEffect(() => {
         setindexFirstPokemon(0);
         setindexLastPokemon(9);
         pagination(indexFirstPokemon, indexLastPokemon)
-    }, [FilteredPokemon])
-
+    }, [FilteredPokemon, checked]);
 
     return (
         <div className={Styles.MainContainer}>
-            <div className={Styles.Headers}>
-                <form onSubmit={handleSubmit} className={Styles.FormContainer}>
-                    <FormsGroup id='name' type='text' name='name' placeholder='POKEMON NAME' value={values.name}
-                        onChange={handleChange} onBlur={handleErrors} className={Styles.InputName} error={errors.name} />
-                    <button className={ButtonStyles.Buttons} type='submit'> BUSCAR</button>
-                </form>
-                <div className={Styles.ContainerButtons}>
-                    <div className={Styles.ButtonNextContainer}>
-                        <button onClick={() => nextPage(FilteredPokemon)} className={ButtonStyles.Buttons}>
-                            SIGUIENTE
-                        </button>
-                    </div>
-                    <div className={Styles.ButtonPrevContainer}>
-                        <button onClick={prevPage} className={ButtonStyles.Buttons}>
-                            ANTERIOR
-                        </button>
-                    </div>
-                </div>
-            </div>
-            {
-                PagedPokemons.length === 0 ?
-                    <h2>LOADING...</h2>
-                    :
-                    <div className={Styles.CardsContainer}>
-                        <Cards AllPokemon={PagedPokemons} style={Styles} />
-                    </div>
-            }
+            <Header handleSubmit={handleSubmit} Styles={Styles} values={values.name} handleChange={handleChange}
+                handleErrors={handleErrors} errors={errors} ButtonStyles={ButtonStyles}
+                prevPage={prevPage} nextPage={() => nextPage(FilteredPokemon)} />
+            <Body PagedPokemons={PagedPokemons} Styles={Styles} />
         </div>
     );
 };

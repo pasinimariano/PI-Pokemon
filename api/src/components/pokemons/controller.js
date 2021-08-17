@@ -32,7 +32,16 @@ const AllPokemonsDB = async () => {
         }
     });
 
-    return records
+    const response = records.map(obj => {
+        return {
+            id: obj.dataValues.id,
+            name: obj.dataValues.name,
+            img: obj.dataValues.img,
+            types: obj.dataValues.types.map(obj => obj.name)
+        }
+    })
+
+    return response
 };
 
 const API_pokemonByID = async (id) => {
@@ -58,11 +67,30 @@ const API_pokemonByNAME = async (name) => {
 };
 
 const DB_pokemonByNAME = async (name) => {
-    const pokemon = await PokemonsModel.findAll({
+    let pokemon = await PokemonsModel.findAll({
         where: {
             name: { [Sequelize.Op.iLike]: name }
+        },
+        include: {
+            model: TypesModel,
+            attributes: ['name'],
+            through: {
+                attributes: []
+            }
         }
     })
+
+    if (pokemon.length !== 0) {
+        pokemon = await pokemon.map(obj => {
+            return {
+                id: obj.dataValues.id,
+                name: obj.dataValues.name,
+                img: obj.dataValues.img,
+                types: obj.dataValues.types.map(obj => obj.name)
+            }
+        })
+    }
+
     return pokemon
 }
 
@@ -75,39 +103,42 @@ const CreateNewPokemon = async (pokemon) => {
         def,
         spc_atk,
         spc_def,
-        str,
         spd,
         hgt,
         wdt,
         types
     } = pokemon;
 
-    if (!name) {
-        return 'ERROR: Se requiere un nombre.'
-    } else {
-        const newPokemon = await PokemonsModel.create({
-            name,
-            img,
-            hp,
-            atk,
-            def,
-            spc_atk,
-            spc_def,
-            str,
-            spd,
-            hgt,
-            wdt
-        });
+    if (!name) 'ERROR: Se requiere un nombre.'
+    else {
+        try {
+            const newPokemon = await PokemonsModel.create({
+                name,
+                img,
+                hp,
+                atk,
+                def,
+                spc_atk,
+                spc_def,
+                spd,
+                hgt,
+                wdt
+            });
 
-        const pokemonTypes = await TypesModel.findAll({
-            where: {
-                name : types
-            }
-        });
+            types.forEach(async type => {
+                const findType = await TypesModel.findOne({
+                    where: {
+                        name: type
+                    }
+                })
+                newPokemon.addType(findType)
+            });
 
-        newPokemon.setTypes(pokemonTypes)
+            return `El pokemon ${name} fue creado exitosamente`
 
-        return `El pokemon ${name} fue creado exitosamente`
+        } catch (error) {
+            return `ERROR: ${error}`
+        }
     }
 }
 

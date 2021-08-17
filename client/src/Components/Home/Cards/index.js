@@ -20,7 +20,8 @@ const Cards = (props) => {
                 />
                 <div className={props.style.PokemonTypes}>
                     {pokemon.types.map(type =>
-                        <h2> {type.toUpperCase()} </h2>
+                        <img src={require(`../../../img/types/${type}.png`).default}
+                            alt={`${type} sprite`} className={props.style.TypeImg} /> 
                     )}
                 </div>
                 <div className={props.style.ButtonContainer}>
