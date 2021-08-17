@@ -21,7 +21,7 @@ const Cards = (props) => {
                 <div className={props.style.PokemonTypes}>
                     {pokemon.types.map(type =>
                         <img src={require(`../../../img/types/${type}.png`).default}
-                            alt={`${type} sprite`} className={props.style.TypeImg} /> 
+                            alt={`${type} sprite`} className={props.style.TypeImg} key={`${type}`} />
                     )}
                 </div>
                 <div className={props.style.ButtonContainer}>

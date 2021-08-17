@@ -4,16 +4,14 @@ const { limit } = require('../functions/ApiURL');
 const {
     AllPokemonsAPI,
     AllPokemonsDB,
+    AllPokemonsDBMap,
     API_pokemonByID,
-    DB_pokemonByID,
-    API_pokemonByNAME,
-    DB_pokemonByNAME,
     CreateNewPokemon
 } = controller;
 
 const Store = async () => {
     const APIdata = await AllPokemonsAPI();
-    const DBdata = await AllPokemonsDB();
+    const DBdata = await AllPokemonsDBMap();
     const concatedData = APIdata.concat(DBdata);
 
     return concatedData
@@ -26,23 +24,31 @@ const DetailsById = async (id) => {
         const response = await API_pokemonByID(id);
         return response
     } else {
-        const response = await DB_pokemonByID(id);
+        const DBdata = await AllPokemonsDB();
+        const filter = await DBdata.filter(obj => obj.dataValues.id === id).map(obj => obj.dataValues)
+        const response = {
+            id: filter[0].id,
+            name: filter[0].name,
+            img: filter[0].img,
+            hp: filter[0].hp,
+            atk: filter[0].atk,
+            spc_atk: filter[0].spc_atk,
+            def: filter[0].def,
+            spc_def: filter[0].spc_def,
+            spd: filter[0].spd,
+            hgt: filter[0].hgt,
+            wdt: filter[0].wdt,
+            types: filter[0].types.map(obj => obj.dataValues).map(type => type.name)
+        }
         return response
     }
 };
 
 const DetailsByName = async (name) => {
-    const ApiData = await API_pokemonByNAME(name);
-    const DbData = await DB_pokemonByNAME(name);
-   
-    const ApiCondition = Object.keys(ApiData).length !== 0;
-    const DbCondition = DbData.length !== 0;
+    const store = await Store();
+    const filter = await store.filter(obj => obj.name.toUpperCase() === name.toUpperCase());
 
-    if (!ApiCondition && !DbCondition) return null;
-    else if (ApiCondition && !ApiCondition) return [ApiData];
-    else if (!ApiCondition && ApiCondition) return [DbData];
-    else return DbData.concat(ApiData)
-
+    return filter
 };
 
 const CreatePokemon = async (pokemon) => {

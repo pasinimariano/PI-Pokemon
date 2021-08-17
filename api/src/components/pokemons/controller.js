@@ -1,7 +1,5 @@
-const Sequelize = require('sequelize');
 const getPokemonData = require('../functions/getPokemonData');
 const getPokemonByID = require('../functions/getPokemonByID');
-const getPokemonByName = require('../functions/getPokemonByName');
 const filterData = require('../functions/filterData');
 const Models = require('../functions/getModels');
 
@@ -21,7 +19,21 @@ const AllPokemonsAPI = async () => {
     return response
 };
 
-const AllPokemonsDB = async () => {
+const AllPokemonsDB= async () => {
+    const records = await PokemonsModel.findAll({
+        include: {
+            model: TypesModel,
+            attributes: ['name'],
+            through: {
+                attributes: []
+            }
+        }
+    });
+
+    return records
+};
+
+const AllPokemonsDBMap = async () => {
     const records = await PokemonsModel.findAll({
         include: {
             model: TypesModel,
@@ -57,42 +69,6 @@ const DB_pokemonByID = async (id) => {
 
     return pokemon
 };
-
-const API_pokemonByNAME = async (name) => {
-    const pokemon = await getPokemonByName(name);
-
-    const response = await filterData(pokemon)
-
-    return response
-};
-
-const DB_pokemonByNAME = async (name) => {
-    let pokemon = await PokemonsModel.findAll({
-        where: {
-            name: { [Sequelize.Op.iLike]: name }
-        },
-        include: {
-            model: TypesModel,
-            attributes: ['name'],
-            through: {
-                attributes: []
-            }
-        }
-    })
-
-    if (pokemon.length !== 0) {
-        pokemon = await pokemon.map(obj => {
-            return {
-                id: obj.dataValues.id,
-                name: obj.dataValues.name,
-                img: obj.dataValues.img,
-                types: obj.dataValues.types.map(obj => obj.name)
-            }
-        })
-    }
-
-    return pokemon
-}
 
 const CreateNewPokemon = async (pokemon) => {
     const {
@@ -145,9 +121,8 @@ const CreateNewPokemon = async (pokemon) => {
 module.exports = {
     AllPokemonsAPI,
     AllPokemonsDB,
+    AllPokemonsDBMap,
     API_pokemonByID,
     DB_pokemonByID,
-    API_pokemonByNAME,
-    DB_pokemonByNAME,
     CreateNewPokemon
 }

@@ -2,48 +2,129 @@
     height: 100vh;
     display: grid;
     grid-template-columns: 5% 30% 60% 5%;
-    grid-template-rows: 20% 60% 20%;
+    grid-template-rows: 20% 60% 15%;
 }
 
 .Title {
+    font-size: 20px;
     grid-column-start: 2;
     grid-row-start: 1;
+    text-align: center;
 }
 
 .FormContainer {
-    grid-column-start: 2;
-    grid-row-start: 2;
-    display: flex;
-    flex-direction: column;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    grid-template-rows: 10% 80% 10%;
+    border:inset 8px #000000;
+    -moz-border-radius-topleft: 43px;
+    -moz-border-radius-bottomleft:41px;
+    -webkit-border-top-left-radius:43px;
+    -webkit-border-bottom-left-radius:41px;
+    border-top-left-radius:43px;
+    border-bottom-left-radius:43px;
 }
 
-.InputsContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.Form {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(9, 6%) 46%;
+}
+
+.InputsContainer{
+    grid-column-start: 1;
+    grid-column-end: 3; 
+    grid-row-start: 1;
+    grid-row-end: 9;
+    display: grid;
+    grid-template-columns: repeat(2,50%);
+}
+
+.Inputs {
+    margin-bottom: 5px;
+    border:inset 2px #000000;
+    -moz-border-radius-topleft: 43px;
+    -moz-border-radius-bottomleft:41px;
+    -webkit-border-top-left-radius:43px;
+    -webkit-border-bottom-left-radius:41px;
+    border-top-left-radius:43px;
+    border-bottom-left-radius:43px; 
 }
 
 .TypesContainer{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 10;
     display: grid;
     grid-template-columns: repeat(2, 50%);
 }
 
-.NameContainer {
-    grid-column-start: 3;
-    grid-row-start: 1;
+.ButtonContainer {
+    grid-column-start: 2;
+    grid-row-start: 3;
     margin: auto;
 }
 
 .RightContainer {
+    background-image: url('https://external-preview.redd.it/R0oyiy9uIqPc9t5YEbW3Hh3Q_qM8jJCrpzxOrzSifoM.png?width=640&crop=smart&format=pjpg&auto=webp&s=cc9da60472103ea7a059edb4715bdcb84e098df1');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
     grid-column-start: 3;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 10% 80% 10%;
+    border:inset 8px #000000;
+    border-left: 0;
+}
+
+.NameContainer {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    margin: auto;
+}
+
+.RightContainer img {
+    width: 80%;
+    grid-column-start: 2;
     grid-row-start: 2;
+    margin: auto;
+}
+
+.ContainerButton {
+    text-decoration: none;
+    grid-column-start: 2;
+    grid-row-start: 3;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.RightContainer img {
-    width: 40%;
+.Pokemon {
+    width: 50%;
+    margin: 5px 25%;
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
 }

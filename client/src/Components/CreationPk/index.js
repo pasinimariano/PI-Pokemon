@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import MapTypes from '../Reusable/mapTypes';
 import useForm from '../Reusable/FormControl/useForm';
 import validate from '../Reusable/FormControl/validate';
 import InputForm from './modules/InputForm';
 import { get_pokemons } from '../../Redux/actions/actionCreators';
+import { Link } from 'react-router-dom';
 import Styles from './styles/index.module.css';
-import { Link } from 'react-router-dom'
-import axios from 'axios';
+import ButtonStyle from '../../Style/button.module.css';
 
 const CreateForm = ({ AllTypes, get_pokemons }) => {
 
@@ -35,14 +36,16 @@ const CreateForm = ({ AllTypes, get_pokemons }) => {
                     <InputForm Styles={Styles} values={values} handleChange={handleChange} handleErrors={handleErrors} errors={errors} />
                     <MapTypes Styles={Styles} all_types={AllTypes} handleChecked={handleTypes} checked={values.types} />
                 </form>
-                <button onClick={() => PostPokemon(values)} className={Styles.Button}> CREAR </button>
+                <div className={Styles.ButtonContainer}>
+                    <button onClick={() => PostPokemon(values)} className={ButtonStyle.Buttons}> CREAR </button>
+                </div>
             </div>
-            <h2 className={Styles.NameContainer}>{values.name.toUpperCase()}</h2>
             <div className={Styles.RightContainer}>
-                <img src={values.img} alt={values.img} />
+                <h2 className={Styles.NameContainer}>{values.name.toUpperCase()}</h2>
+                <img src={values.img} alt={values.img} className={Styles.Pokemon} />
                 <h2>{response}</h2>
-                <Link to='/pokemons'>
-                    <button>HOME</button>
+                <Link to='/pokemons' className={Styles.ContainerButton}>
+                    <button className={ButtonStyle.Buttons}>HOME</button>
                 </Link>
             </div>
         </div >
