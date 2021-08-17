@@ -8,7 +8,7 @@ const Cards = (props) => {
         props.AllPokemon.map(pokemon =>
             <div key={pokemon.id} className={props.style.CardContainer}>
                 <h2 className={props.style.PokemonId}>
-                    #{pokemon.id}
+                    #{pokemon.id.toString().slice(0, 5)}
                 </h2>
                 <h2 className={props.style.PokemonName}>
                     {pokemon.name.toUpperCase()}

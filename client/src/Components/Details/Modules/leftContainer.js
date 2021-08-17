@@ -1,11 +1,11 @@
 const LeftContainer = (props) => {
-
+ 
     return (
         <div className={props.Styles.LeftContainer}>
             <div className={props.Styles.LeftGrid}>
                 <div className={props.Styles.PokeId}>
                     <h2> ID </h2>
-                    <h2> #{props.pokemon.id} </h2>
+                    <h2> #{props.pokemon.id.slice(0,5)} </h2>
                 </div>
                 <div className={props.Styles.PokeHgt}>
                     <h2> HEIGHT </h2>
@@ -17,7 +17,7 @@ const LeftContainer = (props) => {
                 </div>
                 <div className={props.Styles.TypesContainer}>
                     {props.pokemon.types && props.pokemon.types.map(type =>
-                        <div>
+                        <div key={`${type}`}>
                             <img src={require(`../../../img/types/${type}.png`).default}
                                 alt={`${type} sprite`} className={props.TypesStyles.Images} />
                         </div>
