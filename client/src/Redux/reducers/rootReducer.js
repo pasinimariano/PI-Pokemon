@@ -44,6 +44,11 @@ export const rootReducer = (state = initialState, action) => {
                 )
                 return { ...state, FilteredPokemon: filterTypes }
 
+            } if (action.payload.includes('ATKASD')) {
+                const filter = state.FilteredPokemon.sort((a, b) => a.atk > b.atk ? 1 : a.atk < b.atk ? -1 : 0)
+
+                return {...state, FilteredPokemon: filter}
+
             } if (action.payload.includes('ID')) {
                 const filterID = state.FilteredPokemon.sort((a, b) => a.id > b.id ? 1 : a.id < b.id ? -1 : 0);
                 return { ...state, FilteredPokemon: filterID }

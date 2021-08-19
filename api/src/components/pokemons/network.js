@@ -10,16 +10,13 @@ const {
 } = store
 
 server.get('/', async (req, res, next) => {
-    const {
-        name
-    } = req.query;
+    const { name } = req.query;
 
     if (name) {
         const response = await DetailsByName(name);
-        const error = `ERROR 404: El nombre ${name} no fue encontrado`;
 
-        if (!response) {
-            res.status(404).send(error)
+        if (response.Error) {
+            res.status(404).send(response)
         } else {
             res.json(response)
         }
@@ -36,14 +33,17 @@ server.get('/', async (req, res, next) => {
 
 server.get('/:id', async (req, res) => {
     const { id } = req.params;
-    const error = 'ERROR: el id debe ser un valor numérico'
+    const error = 'ERROR: el id debe ser un valor numérico';
 
     if (isNaN(parseInt(id))) {
         res.status(400).send(error)
     } else {
-        const pokemonDetails = await DetailsById(id);
-
-        res.json(pokemonDetails)
+        const response = await DetailsById(id);
+        if (response.Error) {
+            res.status(404).send(response)
+        } else {
+            res.json(response)
+        }
     }
 });
 

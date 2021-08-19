@@ -10,11 +10,9 @@ const responseTypes = async () => {
 
     if (recordsDB.length === 0) {
         const createRecords = await getANDcreate();
-
         return createRecords
     } else {
-        const response = await recordsDB.map(obj => obj.name)
-
+        const response = await recordsDB.map(obj => obj.dataValues.name)
         return response
     }
 };

@@ -1,4 +1,4 @@
-const fetchData = require('./fetchData');
+const fetchData = require('../fetchData');
 const ApiURL = require('./ApiURL');
 
 const { ApiURLbyID } = ApiURL;

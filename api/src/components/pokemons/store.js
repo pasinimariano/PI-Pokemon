@@ -1,17 +1,19 @@
 const controller = require('./controller');
-const { limit } = require('../functions/ApiURL');
+const { limit } = require('../functions/ApiData/ApiURL');
 
 const {
     AllPokemonsAPI,
     AllPokemonsDB,
-    AllPokemonsDBMap,
+    API_pokemonByName,
+    DB_pokemonByName,
     API_pokemonByID,
+    DB_pokemonByID,
     CreateNewPokemon
 } = controller;
 
 const Store = async () => {
     const APIdata = await AllPokemonsAPI();
-    const DBdata = await AllPokemonsDBMap();
+    const DBdata = await AllPokemonsDB(map = true);
     const concatedData = APIdata.concat(DBdata);
 
     return concatedData
@@ -24,31 +26,22 @@ const DetailsById = async (id) => {
         const response = await API_pokemonByID(id);
         return response
     } else {
-        const DBdata = await AllPokemonsDB();
-        const filter = await DBdata.filter(obj => obj.dataValues.id === id).map(obj => obj.dataValues)
-        const response = {
-            id: filter[0].id,
-            name: filter[0].name,
-            img: filter[0].img,
-            hp: filter[0].hp,
-            atk: filter[0].atk,
-            spc_atk: filter[0].spc_atk,
-            def: filter[0].def,
-            spc_def: filter[0].spc_def,
-            spd: filter[0].spd,
-            hgt: filter[0].hgt,
-            wdt: filter[0].wdt,
-            types: filter[0].types.map(obj => obj.dataValues).map(type => type.name)
-        }
+        const response = await DB_pokemonByID(id);
         return response
     }
 };
 
 const DetailsByName = async (name) => {
-    const store = await Store();
-    const filter = await store.filter(obj => obj.name.toUpperCase() === name.toUpperCase());
+    const ApiRecords = await API_pokemonByName(name);
+    const DbRecords = await DB_pokemonByName(name)
 
-    return filter
+    const apiCondition = ApiRecords.Error ? false : true;
+    const dbCondition = DbRecords.length === 0 ? false : true;
+
+    if (!apiCondition && !dbCondition) return ApiRecords
+    else if (!apiCondition && dbCondition) return DbRecords
+    else if (apiCondition && !dbCondition) return ApiRecords
+    else return DbRecords.concat(ApiRecords)
 };
 
 const CreatePokemon = async (pokemon) => {

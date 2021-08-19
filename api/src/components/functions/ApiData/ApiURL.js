@@ -1,4 +1,4 @@
-const limit = 151;
+const limit = 649;
 
 const ApiURL = (limit) => {
     return `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`;
@@ -12,6 +12,10 @@ const ApiURLbyNAME = (name) => {
     return `https://pokeapi.co/api/v2/pokemon/${name}`
 };
 
+const SpriteUrl = (id) => {
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`
+}
+
 const ApiUrlTypes = 'https://pokeapi.co/api/v2/type';
 
 module.exports = {
@@ -19,5 +23,6 @@ module.exports = {
     ApiURL,
     ApiURLbyID,
     ApiURLbyNAME,
+    SpriteUrl,
     ApiUrlTypes
 };

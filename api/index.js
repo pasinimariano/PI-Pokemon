@@ -24,7 +24,7 @@ const { CONN } = require('./src/db/connection');
 
 const { PORT, HOST } = config;
 
-CONN.sync()
+CONN.sync({force:true})
     .then(async () => {
         try {
             await CONN.authenticate()

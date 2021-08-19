@@ -1,5 +1,5 @@
-const getURLS = require('./getURLS');
-const fetchData = require('./fetchData');
+const getURLS = require('./getUrls');
+const fetchData = require('../fetchData');
 
 const getPokemonData = async () => {
     const pokemonURL = await getURLS();

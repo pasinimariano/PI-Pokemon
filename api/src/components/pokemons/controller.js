@@ -1,48 +1,32 @@
-const getPokemonData = require('../functions/getPokemonData');
-const getPokemonByID = require('../functions/getPokemonByID');
+const functionGetter = require('../functions/functionGetter');
+const Models = require('../functions/DbData/getModels');
+const ApiURL = require('../functions/ApiData/ApiURL');
 const filterData = require('../functions/filterData');
-const Models = require('../functions/getModels');
 
+const { ApiData, ApiById, ApiByName, DbData, DbByKey } = functionGetter;
 const { PokemonsModel, TypesModel } = Models;
+const { SpriteUrl } = ApiURL;
 
 const AllPokemonsAPI = async () => {
-    const pokemonData = await getPokemonData();
-    const response = await pokemonData.map(obj => {
+    const pokemon = await ApiData();
+
+    const response = await pokemon.map(obj => {
+        const sprite = SpriteUrl(obj.data.id)
         return {
             id: obj.data.id,
             name: obj.data.name,
-            img: obj.data.sprites.front_default,
+            img: sprite,
             types: obj.data.types.map(obj => obj.type.name)
         }
-    })
+    });
 
     return response
 };
 
-const AllPokemonsDB= async () => {
-    const records = await PokemonsModel.findAll({
-        include: {
-            model: TypesModel,
-            attributes: ['name'],
-            through: {
-                attributes: []
-            }
-        }
-    });
+const AllPokemonsDB = async (map = false) => {
+    const records = await DbData(PokemonsModel, TypesModel);
 
-    return records
-};
-
-const AllPokemonsDBMap = async () => {
-    const records = await PokemonsModel.findAll({
-        include: {
-            model: TypesModel,
-            attributes: ['name'],
-            through: {
-                attributes: []
-            }
-        }
-    });
+    if (!map) return records
 
     const response = records.map(obj => {
         return {
@@ -51,13 +35,47 @@ const AllPokemonsDBMap = async () => {
             img: obj.dataValues.img,
             types: obj.dataValues.types.map(obj => obj.name)
         }
-    })
+    });
+
+    return response
+};
+
+const API_pokemonByName = async (name) => {
+    const pokemon = await ApiByName(name);
+
+    if (pokemon.Error) { return pokemon };
+
+    const sprite = await SpriteUrl(pokemon.data.id)
+
+    const response = await {
+        id: pokemon.data.id,
+        name: pokemon.data.name,
+        img: sprite,
+        types: pokemon.data.types.map(obj => obj.type.name)
+    };
+
+    return response
+};
+
+const DB_pokemonByName = async (name) => {
+    const pokemon = await DbByKey(PokemonsModel, TypesModel, 'name', name);
+
+    const response = await pokemon.map(obj => {
+        return {
+            id: obj.dataValues.id,
+            name: obj.dataValues.name,
+            img: obj.dataValues.img,
+            types: obj.dataValues.types.map(type => type.name)
+        }
+    });
 
     return response
 };
 
 const API_pokemonByID = async (id) => {
-    const pokemon = await getPokemonByID(id);
+    const pokemon = await ApiById(id);
+
+    if (pokemon.Error) { return pokemon }
 
     const response = await filterData(pokemon)
 
@@ -65,9 +83,14 @@ const API_pokemonByID = async (id) => {
 };
 
 const DB_pokemonByID = async (id) => {
-    const pokemon = await PokemonsModel.findByPk(id);
+    const pokemon = await DbByKey(PokemonsModel, TypesModel, 'id', id);
 
-    return pokemon
+    if (pokemon.Error) { return pokemon }
+
+    const response = await pokemon[0].dataValues
+    response.types = response.types.map(type => type.name);
+
+    return response
 };
 
 const CreateNewPokemon = async (pokemon) => {
@@ -85,7 +108,7 @@ const CreateNewPokemon = async (pokemon) => {
         types
     } = pokemon;
 
-    if (!name) 'ERROR: Se requiere un nombre.'
+    if (!name) { return 'ERROR: Se requiere un nombre.' }
     else {
         try {
             const newPokemon = await PokemonsModel.create({
@@ -101,8 +124,8 @@ const CreateNewPokemon = async (pokemon) => {
                 wdt
             });
 
-            types.forEach(async type => {
-                const findType = await TypesModel.findOne({
+            types.forEach(type => {
+                const findType = TypesModel.findOne({
                     where: {
                         name: type
                     }
@@ -116,12 +139,13 @@ const CreateNewPokemon = async (pokemon) => {
             return `ERROR: ${error}`
         }
     }
-}
+};
 
 module.exports = {
     AllPokemonsAPI,
     AllPokemonsDB,
-    AllPokemonsDBMap,
+    API_pokemonByName,
+    DB_pokemonByName,
     API_pokemonByID,
     DB_pokemonByID,
     CreateNewPokemon

@@ -1,4 +1,4 @@
-const fetchData = require('./fetchData');
+const fetchData = require('../fetchData');
 const API = require('./ApiURL');
 
 const { limit, ApiURL } = API;

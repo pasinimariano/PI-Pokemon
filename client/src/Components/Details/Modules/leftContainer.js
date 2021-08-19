@@ -5,7 +5,7 @@ const LeftContainer = (props) => {
             <div className={props.Styles.LeftGrid}>
                 <div className={props.Styles.PokeId}>
                     <h2> ID </h2>
-                    <h2> #{props.pokemon.id.slice(0,5)} </h2>
+                    <h2> #{props.pokemon.id.toString().slice(0,5)} </h2>
                 </div>
                 <div className={props.Styles.PokeHgt}>
                     <h2> HEIGHT </h2>
