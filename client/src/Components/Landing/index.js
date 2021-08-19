@@ -15,9 +15,17 @@ const Landing = ({ get_pokemons, get_types }) => {
 
     return (
         <div className={Styles.MainContainer}>
-            <div className={Styles.ButtonContainer}>
-                {/* <PokeballButton to='/pokemons' style={ButtonStyle} />
-                <h2> ENTER </h2> */}
+            <div className={Styles.PageContainer}>
+                <div className={Styles.TopLeft}></div>
+                <div className={Styles.TopRight}></div>
+                <div className={Styles.CenterContainer}></div>
+                <div className={Styles.BottomLeft}></div>
+                <div className={Styles.BottomRight}></div>
+                <div className={Styles.ButtonContainer}>
+                    <div className={Styles.ButtonBg}>
+                        <div className={Styles.Button}> </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
