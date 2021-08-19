@@ -19,13 +19,11 @@ const getANDcreate = async () => {
     const pokemonTypes = await apiResponse.data.results.map(obj => obj.name);
 
     try {
-        await createTypes(pokemonTypes, TypesModel);
-        const Types = await TypesModel.findAll();
-        console.log(await Types)
-        return Types
+        return await createTypes(pokemonTypes, TypesModel)
     } catch (error) {
         return `Error: ${error}`
     }
+
 };
 
 module.exports = {

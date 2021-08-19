@@ -45,7 +45,15 @@ export const get_types = () => {
         return fetch('http://localhost:3001/types')
             .then(response => response.json())
             .then(json => {
-                dispatch({ type: GET_ALL_TYPES, payload: json })
+                if (json === 'Success') {
+                    return fetch('http://localhost:3001/types')
+                        .then(response => response.json())
+                        .then(json => {
+                            dispatch({ type: GET_ALL_TYPES, payload: json })
+                        })
+                } else {
+                    dispatch({ type: GET_ALL_TYPES, payload: json })
+                }
             })
     }
 };

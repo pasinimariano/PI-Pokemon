@@ -38,11 +38,12 @@ const Pokemons = (sequelize) => {
         },
         wdt: {
             type: DataTypes.INTEGER
+        },
+        created: {
+            type: DataTypes.STRING(),
+            defaultValue: 'created'
         }
-    }, {
-        initialAutoIncrement: 1000
-    }
-    )
+    })
 };
 
 module.exports = Pokemons;

@@ -8,8 +8,6 @@ const Types = (sequelize) => {
             unique: true,
             allowNull: false
         }
-    }, {
-        timestamps: false
     })
 };
 

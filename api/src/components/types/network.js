@@ -6,7 +6,7 @@ const { responseTypes } = store;
 
 server.get('/', async (req, res) => {
     const response = await responseTypes();
-    
+
     res.json(response)
 });
 
