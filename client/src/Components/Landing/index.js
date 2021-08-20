@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { get_pokemons, get_types } from '../../Redux/actions/actionCreators';
-import PokeballButton from '../Reusable/PokeballButton';
+import Video from '../../img/Landing/PokemonArceus.mp4';
+import LandingImg from '../../img/Landing/LogoGif.gif'
 import Styles from './Style/index.module.css';
-import ButtonStyle from '../../Style/button.module.css';
 
 
 const Landing = ({ get_pokemons, get_types }) => {
@@ -16,14 +16,22 @@ const Landing = ({ get_pokemons, get_types }) => {
     return (
         <div className={Styles.MainContainer}>
             <div className={Styles.PageContainer}>
-                <div className={Styles.TopLeft}></div>
-                <div className={Styles.TopRight}></div>
-                <div className={Styles.CenterContainer}></div>
-                <div className={Styles.BottomLeft}></div>
-                <div className={Styles.BottomRight}></div>
-                <div className={Styles.ButtonContainer}>
-                    <div className={Styles.ButtonBg}>
-                        <div className={Styles.Button}> </div>
+                <div className={Styles.ScreenContainer}>
+                    <div className={Styles.LeftContainer}>
+                        <iframe
+                            className={Styles.Video}
+                            src={Video}
+                            frameBorder='0'
+                            allowFullScreen
+                            title='video'
+                        />
+                    </div>
+                    <div className={Styles.RightContainer}>
+                        <img
+                            className={Styles.Image}
+                            src={LandingImg}
+                            alt={'Pokemon Home'}
+                        />
                     </div>
                 </div>
             </div>
