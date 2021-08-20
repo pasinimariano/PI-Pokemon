@@ -1,5 +1,8 @@
 .MainContainer {
-    background-color: #171010;
+    background-image: url('../../../img/Landing/background.jpg');
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -9,8 +12,8 @@
 
 .PageContainer {
     background-color: #2B2B2B;
-    width: 85vw;
-    height: 85vh;
+    width: 60vw;
+    height: 100vh;
     border-radius: 60px/20px;
     display: flex;
     align-items: center;
@@ -18,19 +21,19 @@
 }
 
 .ScreenContainer {
-    width: 90%;
-    height: 90%;
+    width: 95%;
+    height: 92%;
     border: solid 5px #171010;
     border-radius: 60px/20px;
     display: grid;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: 100%;
+    grid-template-columns: 100%;
+    grid-template-rows: 58% 2% 40%;
 }
 
-.LeftContainer {
+.TopContainer {
     background-color: #000000;
     border-radius: 60px/15px;
-    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     display: flex;
     justify-content: center;
@@ -42,21 +45,73 @@
     height: 95%;
 }
 
-.RightContainer {
-    background-color: #000000;
-    grid-column-start: 2;
+.Separator {
+    grid-row-start: 2;
+    background-color: #171010;
+}
+
+.BottomContainer {
+    background-color: #ffffff;
+    grid-row-start: 3;
     border-radius: 60px/15px;
+    border-top-right-radius: 0;
     border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .Image {
-    width: 100%;
+    height: 90%;
+} 
+
+.ButtonContainer {
+    background-color: #171010da;
+    text-decoration: none;
+    border-radius: 15px;
+    width: 50%;
+    text-align: center;
 }
 
+.StartButton {
+    color: aliceblue;
+    font-weight: bolder;
+}
 
+.StartButton:hover {
+    color: #bb0505
+}
 
+@media (min-width: 768px) and (max-width: 979px) {
+    .MainContainer {
+        background-size: 150%;
+    }
+    .PageContainer {
+        width: 80%;
+    }
+}
 
-  
+@media (min-width: 481px) and (max-width: 767px) {
+    .MainContainer {
+        background-size: 200%;
+    }
+    .PageContainer {
+        width: 90%;
+    }
+    .Image {
+        height: 60%;
+    } 
+}
+
+@media (max-width: 480px) {
+    .MainContainer {
+        background-size: 230%;
+    }
+    .PageContainer {
+        width: 90%;
+    }
+    .Image {
+        height: 60%;
+    } 
+}

@@ -5,7 +5,7 @@ const fetchData = async (url) => {
         const response = await axios(url)
         return response
     } catch (error) {
-        return { Error: error.response.status }
+        return { Error: error}
     }
 };
 

@@ -1,4 +1,4 @@
-const limit = 649;
+const limit = 251;
 
 const ApiURL = (limit) => {
     return `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`;
