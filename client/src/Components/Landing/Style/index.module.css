@@ -1,86 +1,80 @@
 .MainContainer {
-    background-image: url('../../../img/Landing/background.jpg');
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.PageContainer {
-    background-color: #2B2B2B;
-    width: 60vw;
-    height: 100vh;
-    border-radius: 60px/20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.ScreenContainer {
-    width: 95%;
-    height: 92%;
-    border: solid 5px #171010;
-    border-radius: 60px/20px;
+    background-color: #464660;
+    height: 90vh;
     display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 58% 2% 40%;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 10% 80% 10%;
 }
 
 .TopContainer {
-    background-color: #000000;
-    border-radius: 60px/15px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.Video {
-    width: 95%;
-    height: 95%;
-}
-
-.Separator {
+    grid-column-start: 2;
     grid-row-start: 2;
-    background-color: #171010;
+    display: grid;
+    grid-template-columns: 60% 40%;
 }
 
-.BottomContainer {
-    background-color: #ffffff;
-    grid-row-start: 3;
-    border-radius: 60px/15px;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.TopLeftContent {
+    display: grid;
+    grid-template-rows: 90% 10%;
 }
 
-.Image {
-    height: 90%;
-} 
+.WelcomeImg {
+    width: 80%;
+    margin: auto;
+}
 
-.ButtonContainer {
-    background-color: #171010da;
+.AccessButtonContainer {
+    margin: auto;
+}
+
+.AccessButton {
+    width: 250px;
+    height: 35px;
+    border:solid 2px #F1E9E5;
+    -moz-border-radius-topleft: 75px;
+    -moz-border-radius-topright:24px;
+    -moz-border-radius-bottomleft:24px;
+    -moz-border-radius-bottomright:75px;
+    -webkit-border-top-left-radius:75px;
+    -webkit-border-top-right-radius:24px;
+    -webkit-border-bottom-left-radius:24px;
+    -webkit-border-bottom-right-radius:75px;
+    border-top-left-radius:75px;
+    border-top-right-radius:24px;
+    border-bottom-left-radius:24px;
+    border-bottom-right-radius:75px;
+    padding: 0.46em 1.6em;
+    margin: 1 0.2em 0.2em 0;
+    box-sizing: border-box;
     text-decoration: none;
-    border-radius: 15px;
-    width: 50%;
+    color: #F1E9E5      ;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    background-color: rgba(255, 255, 255, 0);
     text-align: center;
+    transition: all 0.15s;
 }
 
-.StartButton {
-    color: aliceblue;
-    font-weight: bolder;
+.AccessButton:hover {
+    text-shadow: 0 0 2em rgba(255,255,255,1);
+    color: #368B85;
+    border-color: #368B85;
 }
 
-.StartButton:hover {
-    color: #bb0505
+.RightContentImg {
+    width: 100%;
+    border:solid 2px #F1E9E5;
+    -moz-border-radius-topleft: 75px;
+    -moz-border-radius-topright:24px;
+    -moz-border-radius-bottomleft:24px;
+    -moz-border-radius-bottomright:75px;
+    -webkit-border-top-left-radius:75px;
+    -webkit-border-top-right-radius:24px;
+    -webkit-border-bottom-left-radius:24px;
+    -webkit-border-bottom-right-radius:75px;
+    border-top-left-radius:75px;
+    border-top-right-radius:24px;
+    border-bottom-left-radius:24px;
+    border-bottom-right-radius:75px;
 }
 
 @media (min-width: 768px) and (max-width: 979px) {

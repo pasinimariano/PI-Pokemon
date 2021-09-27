@@ -1,32 +1,26 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import mapDispatchToProps from './modules/Dispatch';
-import TopContainer from './modules/TopContainer';
-import BottomContainer from './modules/BottomContainer';
-import Styles from './Style/index.module.css';
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import mapDispatchToProps from './modules/Dispatch'
+import TopContainer from './modules/TopContainer/'
+import Styles from './Style/index.module.css'
 
+const Landing = ({
+  getPokemons,
+  getTypes
+}) => {
+  useEffect(() => {
+    getPokemons()
+    getTypes()
+  }, [getPokemons, getTypes])
 
-const Landing = ({ get_pokemons, get_types }) => {
-
-    useEffect(() => {
-        get_pokemons()
-        get_types()
-    }, [get_pokemons, get_types]);
-
-    return (
-        <div className={Styles.MainContainer}>
-            <div className={Styles.PageContainer}>
-                <div className={Styles.ScreenContainer}>
-                    <TopContainer Styles={Styles} />
-                    <div className={Styles.Separator} />
-                    <BottomContainer Styles={Styles} />
-                </div>
-            </div>
-        </div>
-    );
-};
+  return (
+    <div className={Styles.MainContainer}>
+      <TopContainer Styles={Styles} />
+    </div>
+  )
+}
 
 export default connect(
-    null,
-    mapDispatchToProps
-)(Landing);
+  null,
+  mapDispatchToProps
+)(Landing)

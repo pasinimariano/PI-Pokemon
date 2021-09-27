@@ -113,6 +113,7 @@
     margin: 5px 25%;
     animation: shake 0.5s;
     animation-iteration-count: infinite;
+    color: rgb(201, 225, 101)
 }
 
 @keyframes shake {

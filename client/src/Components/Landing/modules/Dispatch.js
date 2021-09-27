@@ -1,10 +1,10 @@
-import { get_pokemons, get_types } from '../../../Redux/actions/actionCreators';
+import { getPokemons, getTypes } from '../../../Redux/actions/actionCreators'
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        get_pokemons: () => dispatch(get_pokemons()),
-        get_types: () => dispatch(get_types())
-    }
-};
+  return {
+    getPokemons: () => dispatch(getPokemons()),
+    getTypes: () => dispatch(getTypes())
+  }
+}
 
-export default mapDispatchToProps;
+export default mapDispatchToProps
