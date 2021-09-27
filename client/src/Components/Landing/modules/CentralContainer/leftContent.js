@@ -2,7 +2,7 @@ import PokedexApp from '../../../../assets/pokedexBgr.jpg'
 
 const LeftContent = ({ Styles }) => {
   return (
-    <div>
+    <div className={Styles.ImageContainer}>
       <img
         className={Styles.RightContentImg}
         src={PokedexApp}

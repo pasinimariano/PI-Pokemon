@@ -1,6 +1,6 @@
 .MainTopContainer {
     background-color: #464660;
-    height: 90vh;
+    height: 85vh;
     display: grid;
     grid-template-columns: 15% 70% 15%;
     grid-template-rows: 10% 80% 10%;
@@ -60,6 +60,10 @@
     border-color: #368B85;
 }
 
+.ImageContainer {
+    display: flex;
+}
+
 .RightContentImg {
     width: 100%;
     -moz-border-radius-topleft: 75px;
@@ -78,10 +82,10 @@
 
 .MainCentralContainer {
     background-color: #F1E9E5;
-    height: 90vh;
+    height: 85vh;
     display: grid;
     grid-template-columns: 15% 70% 15%;
-    grid-template-rows: 10% 80% 10%;
+    grid-template-rows: 10% 75% 15%;
 }
 
 .CentralContainer {
@@ -100,8 +104,6 @@
     width: 80%;
     margin: auto;
 }
-
-
 
 @media (min-width: 768px) and (max-width: 979px) {
     .MainContainer {

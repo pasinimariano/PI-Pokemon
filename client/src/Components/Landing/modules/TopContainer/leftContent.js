@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Welcome from '../../../../assets/Landing/welcome.png'
 
 const LeftContent = ({ Styles }) => {
@@ -8,7 +9,11 @@ const LeftContent = ({ Styles }) => {
         src={Welcome}
       />
       <div className={Styles.AccessButtonContainer}>
-        <button className={Styles.AccessButton}> START NOW </button>
+        <Link to='/pokemons'>
+          <button className={Styles.AccessButton}>
+            START NOW
+          </button>
+        </Link>
       </div>
     </div>
   )

@@ -47,10 +47,10 @@ export const getTypes = () => {
         if (json.data === 'Success') {
           return axios.get('http://localhost:3001/types')
             .then(json => {
-              dispatch({ type: GET_ALL_TYPES, payload: json })
+              dispatch({ type: GET_ALL_TYPES, payload: json.data })
             })
         } else {
-          dispatch({ type: GET_ALL_TYPES, payload: json })
+          dispatch({ type: GET_ALL_TYPES, payload: json.data })
         }
       })
   }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import mapDispatchToProps from './modules/Dispatch'
 import TopContainer from './modules/TopContainer/'
 import CentralContainer from './modules/CentralContainer/'
+import BottomContainer from './modules/BottomContainer'
 import Styles from './Style/index.module.css'
 
 const Landing = ({
@@ -21,6 +22,9 @@ const Landing = ({
       </div>
       <div className={Styles.MainCentralContainer}>
         <CentralContainer Styles={Styles} />
+      </div>
+      <div className={Styles.MainTopContainer}>
+        <BottomContainer Styles={Styles} />
       </div>
     </div>
   )
