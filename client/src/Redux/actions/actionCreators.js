@@ -18,12 +18,11 @@ export const getPokemons = () => {
   }
 }
 
-export const filter_by_name = (name) => {
+export const filterByName = (name) => {
   return dispatch => {
-    return fetch(`http://localhost:3001/pokemons?name=${name}`)
-      .then(response => response.json())
+    return axios.get(`http://localhost:3001/pokemons?name=${name}`)
       .then(json => {
-        dispatch({ type: FILTER_BY_NAME, payload: json })
+        dispatch({ type: FILTER_BY_NAME, payload: json.data })
       })
   }
 }

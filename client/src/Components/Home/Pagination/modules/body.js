@@ -1,20 +1,13 @@
-import Unknown from "./unknown";
-import Cards from "../../Cards";
+import Unknown from './unknown'
+import Cards from '../../Cards'
+import LeftContent from './LeftContent'
 
-const Body = (props) => {
-    return (
-        <div className={props.Styles.Body}>
-            <div className={props.Styles.CardsContainer}>
-                {
-                    props.PagedPokemons.length === 0 ?
-                        <Unknown Styles={props.Styles} />
-                        :
+const Body = ({ Styles }) => {
+  return (
+    <div className={Styles.BodyContainer}>
+      <LeftContent Styles={Styles} />
+    </div>
+  )
+}
 
-                        <Cards AllPokemon={props.PagedPokemons} style={props.Styles} />
-                }
-            </div>
-        </div>
-    )
-};
-
-export default Body;
+export default Body
