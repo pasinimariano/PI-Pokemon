@@ -1,4 +1,4 @@
-.MainContainer {
+.MainTopContainer {
     background-color: #464660;
     height: 90vh;
     display: grid;
@@ -62,7 +62,6 @@
 
 .RightContentImg {
     width: 100%;
-    border:solid 2px #F1E9E5;
     -moz-border-radius-topleft: 75px;
     -moz-border-radius-topright:24px;
     -moz-border-radius-bottomleft:24px;
@@ -76,6 +75,33 @@
     border-bottom-left-radius:24px;
     border-bottom-right-radius:75px;
 }
+
+.MainCentralContainer {
+    background-color: #F1E9E5;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 10% 80% 10%;
+}
+
+.CentralContainer {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.CenterRightContent {
+    grid-column-start: 2;
+    display: grid;
+}
+
+.CreateImg {
+    width: 80%;
+    margin: auto;
+}
+
+
 
 @media (min-width: 768px) and (max-width: 979px) {
     .MainContainer {
