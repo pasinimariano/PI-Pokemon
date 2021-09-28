@@ -51,24 +51,34 @@ const AllPokemonsDB = async (map = false) => {
   return response
 }
 
-const API_pokemonByName = async (name) => {
+const APIpokemonByName = async (name) => {
   const pokemon = await ApiByName(name)
 
   if (pokemon.Error) { return pokemon };
 
   const sprite = await SpriteUrl(pokemon.data.id)
+  let pokemonId
+
+  if (pokemon.data.id.toString().length === 1) {
+    pokemonId = `00${pokemon.data.id.toString()}`
+  } else if (pokemon.data.id.toString().length === 2) {
+    pokemonId = `0${pokemon.data.id.toString()}`
+  } else {
+    pokemonId = pokemon.data.id.toString()
+  }
 
   const response = await {
-    id: pokemon.data.id,
+    id: pokemonId,
     name: pokemon.data.name,
     img: sprite,
+    sprite: pokemon.data.sprites.versions['generation-vii'].icons.front_default,
     types: pokemon.data.types.map(obj => obj.type.name)
   }
 
   return response
 }
 
-const DB_pokemonByName = async (name) => {
+const DBpokemonByName = async (name) => {
   const pokemon = await DbByKey(PokemonsModel, TypesModel, 'name', name)
 
   const response = await pokemon.map(obj => {
@@ -83,7 +93,7 @@ const DB_pokemonByName = async (name) => {
   return response
 }
 
-const API_pokemonByID = async (id) => {
+const APIpokemonByID = async (id) => {
   const pokemon = await ApiById(id)
 
   if (pokemon.Error) { return pokemon }
@@ -93,7 +103,7 @@ const API_pokemonByID = async (id) => {
   return response
 }
 
-const DB_pokemonByID = async (id) => {
+const DBpokemonByID = async (id) => {
   const pokemon = await DbByKey(PokemonsModel, TypesModel, 'id', id)
 
   if (pokemon.Error) { return pokemon }
@@ -153,9 +163,9 @@ const CreateNewPokemon = async (pokemon) => {
 module.exports = {
   AllPokemonsAPI,
   AllPokemonsDB,
-  API_pokemonByName,
-  DB_pokemonByName,
-  API_pokemonByID,
-  DB_pokemonByID,
+  APIpokemonByName,
+  DBpokemonByName,
+  APIpokemonByID,
+  DBpokemonByID,
   CreateNewPokemon
 }

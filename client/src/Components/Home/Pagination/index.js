@@ -4,10 +4,8 @@ import { pagination, filterByName } from '../../../Redux/actions/actionCreators'
 import Statements from './functions/statements'
 import UseForm from '../../Reusable/FormControl/useForm'
 import validate from '../../Reusable/FormControl/validate'
-import Header from './modules/header'
 import Body from './modules/body'
 import Styles from '../Style/home.module.css'
-import ButtonStyles from '../../../Style/button.module.css'
 
 const Pagination = ({
   AllPokemon,
@@ -55,16 +53,16 @@ const Pagination = ({
 
   return (
     <div className={Styles.MainContainer}>
-      {/* <Header
-        handleSubmit={handleSubmit} Styles={Styles} values={values.name} handleChange={handleChange}
-        handleErrors={handleErrors} errors={errors} ButtonStyles={ButtonStyles}
-        prevPage={prevPage} nextPage={() => nextPage(FilteredPokemon)}
-      /> */}
       <Body
         PagedPokemons={PagedPokemons}
         Styles={Styles}
         nextPage={() => nextPage(FilteredPokemon)}
         prevPage={prevPage}
+        handleSubmit={handleSubmit}
+        values={values.name}
+        handleChange={handleChange}
+        handleErrors={handleErrors}
+        errors={errors}
       />
     </div>
   )
