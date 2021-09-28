@@ -5,13 +5,15 @@ const RightContent = ({
   Styles,
   PagedPokemons,
   prevPage,
-  nextPage
+  nextPage,
+  setShowingPokemon
 }) => {
   return (
     <div className={Styles.RightContent}>
       <PokemonBox
         Styles={Styles}
         PagedPokemons={PagedPokemons}
+        setShowingPokemon={setShowingPokemon}
       />
       <Pagination
         Styles={Styles}

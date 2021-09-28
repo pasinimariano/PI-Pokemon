@@ -1,12 +1,48 @@
-const LeftContent = ({ Styles }) => {
+const LeftContent = ({
+  Styles,
+  showingPokemon
+}) => {
   return (
     <div className={Styles.LeftContent}>
-      <div className={Styles.PokemonImg}>
-        ACA VA LA IMAGEN DEL POKEMON
-      </div>
-      <div className={Styles.PokemonData}>
-        ACA VA EL NOMBRE, LOS TIPOS, Y UN BOTON PARA MAS DETALLES
-      </div>
+      {
+      !showingPokemon
+        ? <h2>Loading ...</h2>
+        : (
+          <>
+            <div className={Styles.PokemonImg}>
+              <img
+                src={showingPokemon.img}
+                className={Styles.Sprite}
+              />
+            </div>
+            <div className={Styles.PokemonData}>
+              <h2 className={Styles.PokemonName}>
+                {`N.º ${showingPokemon.id} ${showingPokemon.name.toUpperCase()}`}
+              </h2>
+              <div className={Styles.PokemonTypes}>
+                {
+                  showingPokemon.types && showingPokemon.types.map(type =>
+                    <div key={`${type}`} className={Styles.ImageContainer}>
+                      <img
+                        src={require(`../../../../../assets/types/${type}.png`).default}
+                        alt={`${type} sprite`}
+                        className={Styles.Images}
+                      />
+                    </div>
+                  )
+                }
+              </div>
+              <div className={Styles.DetailsButton}>
+                <button
+                  className={Styles.Buttons}
+                >
+                  MORE DETAILS
+                </button>
+              </div>
+            </div>
+          </>
+          )
+      }
     </div>
   )
 }

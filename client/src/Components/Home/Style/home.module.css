@@ -17,7 +17,7 @@
     grid-row-start: 3;
     display: grid;
     grid-template-columns: 10% 80% 10%;
-    grid-template-rows: 80% 20%;
+    grid-template-rows: 75% 20%;
 }
 
 .PokemonImg {
@@ -28,8 +28,52 @@
 }
 
 .PokemonData {
+    width: 100%;
     grid-column-start: 2;
     grid-row-start: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 40% repeat(2, 30%);
+}
+
+.Sprite {
+    width: 65%;
+}
+
+.PokemonName {
+    margin: auto;
+    width: 60%;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+}
+
+.PokemonTypes {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ImageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Images {
+    width: 45%;
+}
+
+.DetailsButton {
+    margin-top: 8px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    display: flex;
+    justify-content: center;
 }
 
 .RightContent {
@@ -100,9 +144,14 @@
 }
 
 .ButtonPokeball {
-    width: 30%;
+    width: 40%;
     display: flex;
     align-items: center;
+}
+
+.ButtonPokeball:hover {
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
 }
 
 .PaginationContainer {
@@ -186,13 +235,13 @@
 }
 
 .FiltersContainer {
-    width: 18vw;
+    width: 24vw;
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 2;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .LabelFilter {
@@ -201,6 +250,10 @@
 
 .CloseButton {
     color: #dad5d2ff;
+}
+
+.CloseButton :hover{
+    color: #368b85ff;
 }
 
 .LabelTitle {
@@ -260,5 +313,19 @@
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: repeat(10, 10%);
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
