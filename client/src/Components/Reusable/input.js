@@ -1,43 +1,29 @@
-const FormGroup = (props) => {
-    return (
-        <div>
-            {props.error ?
-                <div>
-                    <label>
-                        {props.placeholder}
-                    </label>
-                    <input
-                        id={props.id}
-                        type={props.type}
-                        name={props.name}
-                        className={props.className}
-                        placeholder={`${props.error}`}
-                        value={props.value}
-                        onChange={props.onChange}
-                        onBlur={props.onBlur}
-                    />
-                </div>
-                :
-                <div>
-                    <label>
-                        {props.placeholder}
-                    </label>
-                    <input
-                        id={props.id}
-                        type={props.type}
-                        name={props.name}
-                        className={props.className}
-                        placeholder={`${props.placeholder}`}
-                        value={props.value}
-                        onChange={props.onChange}
-                        onBlur={props.onBlur}
-                    />
-                </div>
-            }
-        </div>
-    );
-};
+const FormGroup = ({
+  id,
+  type,
+  name,
+  className,
+  placeholder,
+  value,
+  onChange,
+  onBlur
+}) => {
+  return (
+    <div>
+      <div>
+        <input
+          id={id}
+          type={type}
+          name={name}
+          className={className}
+          placeholder={`${placeholder}`}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+      </div>
+    </div>
+  )
+}
 
-export default FormGroup;
-
-
+export default FormGroup
