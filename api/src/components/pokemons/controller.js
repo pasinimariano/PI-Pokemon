@@ -16,7 +16,7 @@ const AllPokemonsAPI = async () => {
 
     if (obj.data.id.toString().length === 1) {
       pokemonId = `00${obj.data.id.toString()}`
-    } else if (obj.data.id.toString().length === 1) {
+    } else if (obj.data.id.toString().length === 2) {
       pokemonId = `0${obj.data.id.toString()}`
     } else {
       pokemonId = obj.data.id.toString()

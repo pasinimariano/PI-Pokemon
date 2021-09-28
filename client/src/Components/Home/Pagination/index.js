@@ -60,7 +60,12 @@ const Pagination = ({
         handleErrors={handleErrors} errors={errors} ButtonStyles={ButtonStyles}
         prevPage={prevPage} nextPage={() => nextPage(FilteredPokemon)}
       /> */}
-      <Body PagedPokemons={PagedPokemons} Styles={Styles} />
+      <Body
+        PagedPokemons={PagedPokemons}
+        Styles={Styles}
+        nextPage={() => nextPage(FilteredPokemon)}
+        prevPage={prevPage}
+      />
     </div>
   )
 }
