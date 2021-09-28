@@ -11,7 +11,8 @@ const Body = ({
   values,
   handleChange,
   handleErrors,
-  errors
+  errors,
+  showSidebar
 }) => {
   return (
     <div className={Styles.BodyContainer}>
@@ -22,6 +23,7 @@ const Body = ({
         handleChange={handleChange}
         handleErrors={handleErrors}
         errors={errors}
+        showSidebar={showSidebar}
       />
       <LeftContent Styles={Styles} />
       <RightContent
