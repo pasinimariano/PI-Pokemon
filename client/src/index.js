@@ -8,7 +8,7 @@ import App from './Components/App'
 import reportWebVitals from './System/reportWebVitals'
 
 const { Store, Persistor } = reduxStore
-Persistor.purge()
+// Persistor.purge()
 ReactDOM.render(
   <Provider store={Store}>
     <React.StrictMode>

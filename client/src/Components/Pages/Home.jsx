@@ -1,6 +1,6 @@
 import React from 'react'
 import Pagination from '../Home/Pagination'
-// import SideBar from '../Home/SideBar'
+import SideBar from '../Home/SideBar'
 import CheckBoxControl from '../Reusable/CheckBoxControl/'
 import Styles from './Styles/home.module.css'
 
@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div className={Styles.Container}>
-      {/* <SideBar checked={checked} handleChecked={handleChecked} /> */}
+      <SideBar checked={checked} handleChecked={handleChecked} />
       <Pagination checked={checked} />
     </div>
   )
