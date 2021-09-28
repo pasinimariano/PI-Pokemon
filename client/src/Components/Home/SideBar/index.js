@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { AiOutlineClose } from 'react-icons/ai'
 import OrderState from './modules/orderState'
 import OrderFilter from './modules/orderFilter'
 import MapTypes from '../../Reusable/mapTypes'
-import CreatePK from './modules/createPK'
 import { filters } from '../../../Redux/actions/actionCreators'
 import Styles from '../Style/home.module.css'
-import ButtonStyle from '../../../Style/button.module.css'
 
 const SideBar = ({
   allPokemon,
   allTypes,
   filter,
   checked,
-  handleChecked
+  handleChecked,
+  showSidebar
 }) => {
   useEffect(() => {
     filter(checked)
@@ -21,14 +21,22 @@ const SideBar = ({
 
   return (
     <div className={Styles.SideBarContainer}>
-      <h2 className={Styles.LabelFilter}> FILTROS </h2>
-      <h2 className={Styles.LabelState}> POR ESTADO </h2>
-      <OrderState Styles={Styles} handleChecked={handleChecked} checked={checked} />
-      <h2 className={Styles.LabelOrder}> POR ORDEN </h2>
-      <OrderFilter Styles={Styles} handleChecked={handleChecked} checked={checked} />
-      <h2 className={Styles.LabelTypes}> POR TIPOS </h2>
-      <MapTypes Styles={Styles} all_types={allTypes} handleChecked={handleChecked} checked={checked} />
-      <CreatePK Styles={Styles} ButtonStyle={ButtonStyle} />
+      <div className={Styles.FiltersContainer}>
+        <h2 className={Styles.LabelFilter}> FILTERS </h2>
+        <AiOutlineClose size={25} onClick={showSidebar} className={Styles.CloseButton} />
+      </div>
+      <div className={Styles.StateContainer}>
+        <h2 className={Styles.LabelTitle}> STATE </h2>
+        <OrderState Styles={Styles} handleChecked={handleChecked} checked={checked} />
+      </div>
+      <div className={Styles.OrderContainer}>
+        <h2 className={Styles.LabelTitle}> ORDER </h2>
+        <OrderFilter Styles={Styles} handleChecked={handleChecked} checked={checked} />
+      </div>
+      <h2 className={Styles.LabelTypes}> TYPES </h2>
+      <div className={Styles.TypesContainer}>
+        <MapTypes Styles={Styles} all_types={allTypes} handleChecked={handleChecked} checked={checked} />
+      </div>
     </div>
   )
 }

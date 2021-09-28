@@ -6,6 +6,7 @@ import UseForm from '../../Reusable/FormControl/useForm'
 import validate from '../../Reusable/FormControl/validate'
 import Body from './modules/body'
 import Styles from '../Style/home.module.css'
+import SideBar from '../SideBar'
 
 const Pagination = ({
   AllPokemon,
@@ -13,7 +14,10 @@ const Pagination = ({
   PagedPokemons,
   pagination,
   filterByName,
-  checked
+  checked,
+  handleChecked,
+  sidebar,
+  showSidebar
 }) => {
   const {
     values,
@@ -53,6 +57,15 @@ const Pagination = ({
 
   return (
     <div className={Styles.MainContainer}>
+      {
+        !sidebar
+          ? null
+          : <SideBar
+              checked={checked}
+              handleChecked={handleChecked}
+              showSidebar={showSidebar}
+            />
+      }
       <Body
         PagedPokemons={PagedPokemons}
         Styles={Styles}
@@ -63,6 +76,7 @@ const Pagination = ({
         handleChange={handleChange}
         handleErrors={handleErrors}
         errors={errors}
+        showSidebar={showSidebar}
       />
     </div>
   )

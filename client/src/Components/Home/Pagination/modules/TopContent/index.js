@@ -1,4 +1,5 @@
-import FormsGroup from '../../../../Reusable/input'
+import { FaBars } from 'react-icons/fa'
+import FormName from './formName'
 
 const TopContent = ({
   Styles,
@@ -6,27 +7,24 @@ const TopContent = ({
   values,
   handleChange,
   handleErrors,
-  errors
+  errors,
+  showSidebar
 }) => {
   return (
-    <div className={Styles.FormContainer}>
-      <form onSubmit={handleSubmit} className={Styles.Form}>
-        <FormsGroup
-          id='name'
-          type='text'
-          name='name'
-          placeholder='POKEMON NAME'
-          value={values}
-          onChange={handleChange}
-          onBlur={handleErrors}
-          className={Styles.InputName}
-        />
-        <button className={Styles.Buttons} type='submit'> SEARCH </button>
-      </form>
-      <h5 className={Styles.Error}>
-        {errors.name && errors.name}
-      </h5>
-    </div>
+    <>
+      <div className={Styles.Welcome}>
+        <FaBars onClick={showSidebar} size={25} />
+        <h3> POKEDEX </h3>
+      </div>
+      <FormName
+        Styles={Styles}
+        handleSubmit={handleSubmit}
+        values={values}
+        handleChange={handleChange}
+        handleErrors={handleErrors}
+        errors={errors}
+      />
+    </>
   )
 }
 
