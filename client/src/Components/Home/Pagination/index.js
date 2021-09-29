@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { pagination, filterByName } from '../../../Redux/actions/actionCreators'
+import { pagination, filterByName, filters } from '../../../Redux/actions/actionCreators'
 import Statements from './functions/statements'
 import UseForm from '../../Reusable/FormControl/useForm'
 import validate from '../../Reusable/FormControl/validate'
@@ -17,7 +17,8 @@ const Pagination = ({
   checked,
   handleChecked,
   sidebar,
-  showSidebar
+  showSidebar,
+  filters
 }) => {
   const {
     values,
@@ -44,6 +45,10 @@ const Pagination = ({
       name: ''
     })
   }
+
+  useEffect(() => {
+    filters(checked)
+  }, [])
 
   useEffect(() => {
     pagination(indexFirstPokemon, indexLastPokemon)
@@ -93,7 +98,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     pagination: (page, offset) => dispatch(pagination(page, offset)),
-    filterByName: (name) => dispatch(filterByName(name))
+    filterByName: (name) => dispatch(filterByName(name)),
+    filters: (array) => dispatch(filters(array))
   }
 }
 
