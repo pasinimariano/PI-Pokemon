@@ -19,7 +19,7 @@ const Body = ({
 
   useEffect(() => {
     setShowingPokemon(PagedPokemons[0])
-  }, [])
+  }, [PagedPokemons])
 
   return (
     <div className={Styles.BodyContainer}>

@@ -1,7 +1,25 @@
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
 const LeftContent = ({
   Styles,
   showingPokemon
 }) => {
+  const [id, setId] = useState()
+
+  useEffect(() => {
+    if (showingPokemon) {
+      if (showingPokemon.id.toString().slice(0, 2) === '00') {
+        setId(showingPokemon.id.toString().slice(2, 3))
+      } else if (showingPokemon.id.toString().slice(0, 1) === '0') {
+        setId(showingPokemon.id.toString().slice(1, 3))
+      } else {
+        setId(showingPokemon.id)
+      }
+    }
+  }, [showingPokemon])
+
+  console.log(id)
   return (
     <div className={Styles.LeftContent}>
       {
@@ -33,11 +51,13 @@ const LeftContent = ({
                 }
               </div>
               <div className={Styles.DetailsButton}>
-                <button
-                  className={Styles.Buttons}
-                >
-                  MORE DETAILS
-                </button>
+                <Link to={`/pokemons/${id}`}>
+                  <button
+                    className={Styles.Buttons}
+                  >
+                    MORE DETAILS
+                  </button>
+                </Link>
               </div>
             </div>
           </>
