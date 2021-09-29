@@ -1,64 +1,60 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { get_pokemon_by_id } from '../../Redux/actions/actionCreators';
-import { delete_details } from '../../Redux/actions/actionCreators';
-import LeftContainer from './Modules/leftContainer';
-import CentralContainer from './Modules/centralContainer';
-import RightContainer from './Modules/rightContainer';
-import Styles from './style/details.module.css';
-import TypesStyles from '../../Style/types.module.css';
-import ButtonStyles from '../../Style/button.module.css'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { getPokemonById, deleteDetails } from '../../Redux/actions/actionCreators'
+import Body from './Modules/body'
+import Styles from './style/details.module.css'
 
-const Card = (props) => {
+const PokemonDetails = ({
+  getPokemon,
+  deleteDetails,
+  pokemon,
+  match
+}) => {
+  useEffect(() => {
+    deleteDetails()
+    getPokemon(match.id)
+  }, [deleteDetails, getPokemon, match])
 
-    const {
-        get_pokemon,
-        delete_details,
-        pokemon,
-        match
-    } = props;
-
-    useEffect(() => {
-        delete_details()
-        get_pokemon(match.id)
-    }, [delete_details, get_pokemon, match]);
-
-    return (
-        <div>
-            {pokemon === null ?
+  return (
+    <>
+      {
+        pokemon === null
+          ? (
+            <div>
+              ERROR 404
+            </div>
+            )
+          : !pokemon.name
+              ? (
                 <div>
-                    ERROR 404
+                  LOADING ...
                 </div>
-                :
-                !pokemon.name ?
-                    <div>
-                        LOADING ...
-                    </div>
-                    :
-                    <div className={Styles.Container}>
-                        <LeftContainer Styles={Styles} pokemon={pokemon} TypesStyles={TypesStyles} />
-                        <CentralContainer Styles={Styles} pokemon={pokemon} ButtonStyles={ButtonStyles} />
-                        <RightContainer Styles={Styles} pokemon={pokemon} />
-                    </div>
-            }
-        </div>
-    );
-};
+                )
+              : (
+                <Body
+                  pokemon={pokemon}
+                  Styles={Styles}
+                />
+                )
+        }
+    </>
+  )
+}
 
 const mapStateToProps = (state) => {
-    return {
-        pokemon: state.PokemonDetails
-    }
-};
+  return {
+    pokemon: state.PokemonDetails
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        get_pokemon: (id) => dispatch(get_pokemon_by_id(id)),
-        delete_details: () => dispatch(delete_details())
-    }
-};
+  return {
+    getPokemon: (id) => dispatch(getPokemonById(id)),
+    deleteDetails: () => dispatch(deleteDetails())
+  }
+}
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Card);
+  mapStateToProps,
+  mapDispatchToProps
+)(PokemonDetails)
