@@ -1,0 +1,43 @@
+.Footbar {
+    position: absolute;
+    bottom: 0;
+    height: 38px;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 5% 7% 2% 7% 2% 7% 70%;
+}
+
+.Home {
+    height: 34px;
+    grid-column-start: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #F1E9E5
+}
+
+.Create {
+    height: 34px;
+    grid-column-start: 4;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #F1E9E5
+}
+
+.About {
+    height: 34px;
+    grid-column-start: 6;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #F1E9E5
+}
+
+.Links {
+    color: #F1E9E5
+}
+
+.Icons:hover {
+    color: #368b85ff
+}

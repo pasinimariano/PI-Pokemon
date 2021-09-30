@@ -55,17 +55,16 @@ export const getTypes = () => {
   }
 }
 
-export const get_pokemon_by_id = (id) => {
+export const getPokemonById = (id) => {
   return dispatch => {
-    return fetch(`http://localhost:3001/pokemons/${id}`)
-      .then(response => response.json())
+    return axios.get(`http://localhost:3001/pokemons/${id}`)
       .then(json => {
-        dispatch({ type: POKEMON_BY_ID, payload: json })
+        dispatch({ type: POKEMON_BY_ID, payload: json.data })
       })
   }
 }
 
-export const delete_details = () => {
+export const deleteDetails = () => {
   return {
     type: DELETE_DETAILS
   }

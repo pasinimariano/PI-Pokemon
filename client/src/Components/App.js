@@ -1,14 +1,24 @@
-import React from 'react';
-import RoutesWeb from './RoutesWeb';
-import Styles from '../Style/app.module.css';
+import React from 'react'
+import { withRouter } from 'react-router'
+import RoutesWeb from './RoutesWeb'
+import Footbar from './Footbar'
+import Styles from '../Style/app.module.css'
 
-const App = () => {
-    return (
-        <div className={Styles.App}>
-            <RoutesWeb />
-        </div>
-    )
+const App = (
+  props
+) => {
+  const location = props.location.pathname
 
-};
+  return (
+    <div className={Styles.App}>
+      <RoutesWeb />
+      {
+        location !== '/'
+          ? <Footbar />
+          : null
+      }
+    </div>
+  )
+}
 
-export default App;
+export default withRouter(App)
