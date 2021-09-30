@@ -1,11 +1,11 @@
-import PokedexApp from '../../../../assets/pokedexBgr.jpg'
+import DetailsApp from '../../../../assets/Landing/details.png'
 
 const LeftContent = ({ Styles }) => {
   return (
-    <div className={Styles.ImageContainer}>
+    <div className={Styles.ImageContainerR}>
       <img
         className={Styles.RightContentImg}
-        src={PokedexApp}
+        src={DetailsApp}
       />
     </div>
   )

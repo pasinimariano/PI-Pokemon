@@ -1,4 +1,4 @@
-import PokedexApp from '../../../../assets/pokedexBgr.jpg'
+import PokedexApp from '../../../../assets/Landing/pokedex.png'
 
 const RightContent = ({ Styles }) => {
   return (
