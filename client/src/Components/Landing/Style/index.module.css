@@ -62,10 +62,18 @@
 
 .ImageContainer {
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.ImageContainerR {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .RightContentImg {
-    width: 100%;
+    width: 75vh;
     -moz-border-radius-topleft: 75px;
     -moz-border-radius-topright:24px;
     -moz-border-radius-bottomleft:24px;
