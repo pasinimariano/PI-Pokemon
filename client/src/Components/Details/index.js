@@ -34,6 +34,7 @@ const PokemonDetails = ({
                 <Body
                   pokemon={pokemon}
                   Styles={Styles}
+                  match={match}
                 />
                 )
         }

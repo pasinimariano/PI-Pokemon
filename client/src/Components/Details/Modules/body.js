@@ -3,7 +3,8 @@ import RightContent from './RightContent'
 
 const Body = ({
   pokemon,
-  Styles
+  Styles,
+  match
 }) => {
   return (
     <div className={Styles.MainContainer}>
@@ -14,6 +15,7 @@ const Body = ({
       <RightContent
         pokemon={pokemon}
         Styles={Styles}
+        match={match}
       />
     </div>
   )

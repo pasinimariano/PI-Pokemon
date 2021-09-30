@@ -5,6 +5,7 @@ const Details = ({
   Styles
 }) => {
   const pokemonHgt = pokemon.hgt / 10
+  const pokemonWgt = pokemon.wdt / 1000
   return (
     <div className={Styles.DetailsContainer}>
       <div className={Styles.DataContainer}>
@@ -14,7 +15,7 @@ const Details = ({
             pokemon.types && pokemon.types.map(type => (
               <img
                 key={type}
-                src={require(`../../../../assets/types/${type}.png`).default}
+                src={require(`../../../../../assets/types/${type}.png`).default}
                 alt={`${type} sprite`}
                 className={Styles.Images}
               />
@@ -25,7 +26,7 @@ const Details = ({
         <div className={Styles.HeightLabel}> HEIGHT </div>
         <div className={Styles.Height}> {pokemonHgt}Mts. </div>
         <div className={Styles.WeightLabel}> WEIGHT </div>
-        <div className={Styles.Weight}> {pokemon.wdt}Lbs. </div>
+        <div className={Styles.Weight}> {pokemonWgt}Kgs. </div>
         <div className={Styles.Stats}>
           <Progress name='HP' value={pokemon.hp} Styles={Styles} />
           <Progress name='ATK' value={pokemon.atk} Styles={Styles} />
