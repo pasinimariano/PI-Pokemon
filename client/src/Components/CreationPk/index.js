@@ -10,7 +10,10 @@ import { Link } from 'react-router-dom'
 import Styles from './styles/index.module.css'
 import ButtonStyle from '../../Style/button.module.css'
 
-const CreateForm = ({ AllTypes, getPokemons }) => {
+const CreateForm = ({
+  AllTypes,
+  getPokemons
+}) => {
   const {
     handleChange,
     handleErrors,
@@ -29,24 +32,24 @@ const CreateForm = ({ AllTypes, getPokemons }) => {
 
   return (
     <div className={Styles.MainContainer}>
-      <h2 className={Styles.Title}> CREA TU PROPIO POKEMON! </h2>
+      <h2 className={Styles.Title}> CREATE YOUR OWN POKEMON! </h2>
       <div className={Styles.FormContainer}>
         <form className={Styles.Form}>
           <InputForm Styles={Styles} values={values} handleChange={handleChange} handleErrors={handleErrors} errors={errors} />
-          <MapTypes Styles={Styles} all_types={AllTypes} handleChecked={handleTypes} checked={values.types} />
+          <MapTypes Styles={Styles} allTypes={AllTypes} handleChecked={handleTypes} checked={values.types} />
         </form>
         <div className={Styles.ButtonContainer}>
-          <button onClick={() => PostPokemon(values)} className={ButtonStyle.Buttons}> CREAR </button>
+          <button onClick={() => PostPokemon(values)} className={Styles.Buttons}> CREAR </button>
         </div>
       </div>
-      <div className={Styles.RightContainer}>
+      {/* <div className={Styles.RightContainer}>
         <h2 className={Styles.NameContainer}>{values.name.toUpperCase()}</h2>
         <img src={values.img} alt={values.img} className={Styles.Pokemon} />
         <h2>{response}</h2>
         <Link to='/pokemons' className={Styles.ContainerButton}>
           <button className={ButtonStyle.Buttons}>HOME</button>
         </Link>
-      </div>
+      </div> */}
     </div>
   )
 }
