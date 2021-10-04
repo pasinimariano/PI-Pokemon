@@ -44,6 +44,7 @@ const AllPokemonsDB = async (map = false) => {
       id: obj.dataValues.id,
       name: obj.dataValues.name,
       img: obj.dataValues.img,
+      sprite: obj.dataValues.sprite,
       types: obj.dataValues.types.map(obj => obj.name)
     }
   })
@@ -128,12 +129,14 @@ const CreateNewPokemon = async (pokemon) => {
     wdt,
     types
   } = pokemon
+  const spriteUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/201.png'
 
   if (!name) { return 'ERROR: Name is Required.' } else {
     try {
       const newPokemon = await PokemonsModel.create({
         name,
         img,
+        sprite: spriteUrl,
         hp,
         atk,
         def,
@@ -144,8 +147,8 @@ const CreateNewPokemon = async (pokemon) => {
         wdt
       })
 
-      types.forEach(type => {
-        const findType = TypesModel.findOne({
+      types.forEach(async type => {
+        const findType = await TypesModel.findOne({
           where: {
             name: type
           }

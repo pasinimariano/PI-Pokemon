@@ -18,24 +18,24 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-const server = require('./src/app');
-const config = require('./src/libs/config/config');
-const { CONN } = require('./src/db/connection');
+const server = require('./src/app')
+const config = require('./src/libs/config/config')
+const { CONN } = require('./src/db/connection')
 
-const { PORT, HOST } = config;
+const { PORT, HOST } = config
 
 CONN.sync()
-    .then(async () => {
-        try {
-            await CONN.authenticate()
-            console.log('Connection with DB has been successful')
-        } catch (error) {
-            console.error('Unable to connect to the DB: ', error)
-        }
+  .then(async () => {
+    try {
+      await CONN.authenticate()
+      console.log('Connection with DB has been successful')
+    } catch (error) {
+      console.error('Unable to connect to the DB: ', error)
+    }
+  })
+
+  .then(() => {
+    server.listen(PORT, HOST, () => {
+      console.log(`Server running on ${HOST}:${PORT}`)
     })
-    
-    .then(() => {
-        server.listen(PORT, HOST, () => {
-            console.log(`Server running on ${HOST}:${PORT}`)
-        })
-    });
+  })
