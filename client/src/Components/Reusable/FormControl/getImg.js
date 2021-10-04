@@ -1,8 +1,8 @@
 const randomImg = async () => {
-    let number = await Math.floor(Math.random() * 890) + 1;
-    let spriteURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`;
+  const number = await Math.floor(Math.random() * 649) + 1
+  const spriteURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${number}.gif`
 
-    return spriteURL
-};
+  return spriteURL
+}
 
 export default randomImg

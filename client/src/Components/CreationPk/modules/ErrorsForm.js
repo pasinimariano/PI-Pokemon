@@ -12,7 +12,7 @@ const ErrorsForm = ({
       <div className={Styles.Error}> {errors && errors.spc_def} </div>
       <div className={Styles.Error}> {errors && errors.spd} </div>
       <div className={Styles.Error}> {errors && errors.hgt} </div>
-      <div className={Styles.Error}> {errors && errors.wdt} </div>
+      <div className={Styles.Error}> {errors && errors.def} </div>
     </div>
   )
 }
