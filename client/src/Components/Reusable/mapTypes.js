@@ -9,9 +9,6 @@ const MapTypes = ({
 }) => {
   return (
     <div className={Styles.TypesContainer}>
-      <h4 className={Styles.TypeTitle}>
-        SELECT YOUR POKEMON TYPES
-      </h4>
       <div className={Styles.Mapping}>
         {
           allTypes.map((value, index) => (
