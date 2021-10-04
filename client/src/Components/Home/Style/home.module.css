@@ -228,7 +228,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 23vw;
+    width: 25vw;
     height: 100vh;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -311,9 +311,11 @@
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 6;
+}
+
+.Mapping {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: repeat(10, 10%);
 }
 
 @keyframes shake {

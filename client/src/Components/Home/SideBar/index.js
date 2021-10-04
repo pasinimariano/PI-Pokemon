@@ -35,7 +35,7 @@ const SideBar = ({
       </div>
       <h2 className={Styles.LabelTypes}> TYPES </h2>
       <div className={Styles.TypesContainer}>
-        <MapTypes Styles={Styles} all_types={allTypes} handleChecked={handleChecked} checked={checked} />
+        <MapTypes Styles={Styles} allTypes={allTypes} handleChecked={handleChecked} checked={checked} />
       </div>
     </div>
   )
