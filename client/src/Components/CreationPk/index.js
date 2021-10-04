@@ -6,9 +6,8 @@ import useForm from '../Reusable/FormControl/useForm'
 import validate from '../Reusable/FormControl/validate'
 import InputForm from './modules/InputForm'
 import { getPokemons } from '../../Redux/actions/actionCreators'
-import { Link } from 'react-router-dom'
 import Styles from './styles/index.module.css'
-import ButtonStyle from '../../Style/button.module.css'
+import ErrorsForm from './modules/ErrorsForm'
 
 const CreateForm = ({
   AllTypes,
@@ -36,20 +35,18 @@ const CreateForm = ({
       <div className={Styles.FormContainer}>
         <form className={Styles.Form}>
           <InputForm Styles={Styles} values={values} handleChange={handleChange} handleErrors={handleErrors} errors={errors} />
+          <ErrorsForm Styles={Styles} errors={errors} />
           <MapTypes Styles={Styles} allTypes={AllTypes} handleChecked={handleTypes} checked={values.types} />
         </form>
         <div className={Styles.ButtonContainer}>
           <button onClick={() => PostPokemon(values)} className={Styles.Buttons}> CREAR </button>
         </div>
       </div>
-      {/* <div className={Styles.RightContainer}>
+      <div className={Styles.RightContainer}>
         <h2 className={Styles.NameContainer}>{values.name.toUpperCase()}</h2>
         <img src={values.img} alt={values.img} className={Styles.Pokemon} />
         <h2>{response}</h2>
-        <Link to='/pokemons' className={Styles.ContainerButton}>
-          <button className={ButtonStyle.Buttons}>HOME</button>
-        </Link>
-      </div> */}
+      </div>
     </div>
   )
 }
