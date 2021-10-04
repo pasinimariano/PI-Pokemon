@@ -8,6 +8,7 @@ import InputForm from './modules/InputForm'
 import { getPokemons } from '../../Redux/actions/actionCreators'
 import Styles from './styles/index.module.css'
 import ErrorsForm from './modules/ErrorsForm'
+import Hatching from '../../assets/hatching.png'
 
 const CreateForm = ({
   AllTypes,
@@ -18,7 +19,8 @@ const CreateForm = ({
     handleErrors,
     handleTypes,
     values,
-    errors
+    errors,
+    getNewSprite
   } = useForm(validate)
 
   const [response, setResponse] = useState('')
@@ -44,8 +46,31 @@ const CreateForm = ({
       </div>
       <div className={Styles.RightContainer}>
         <h2 className={Styles.NameContainer}>{values.name.toUpperCase()}</h2>
-        <img src={values.img} alt={values.img} className={Styles.Pokemon} />
-        <h2>{response}</h2>
+        <div className={Styles.PokemonSprite}>
+          <img
+            src={values.img}
+            alt={values.img}
+            className={Styles.Pokemon}
+          />
+          <img
+            src={Hatching}
+            alt='Hatching Pokemon'
+            className={Styles.Hatching}
+          />
+        </div>
+        <div className={Styles.ButtonSpriteContainer}>
+          <button
+            onClick={() => getNewSprite()}
+            className={Styles.ButtonSprite}
+          >
+            GET SPRITE!
+          </button>
+        </div>
+        <div className={Styles.Response}>
+          <h4>
+            {response}
+          </h4>
+        </div>
       </div>
     </div>
   )

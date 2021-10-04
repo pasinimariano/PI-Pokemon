@@ -1,61 +1,61 @@
 const validate = (values) => {
-    let errors = {};
+  const errors = {}
 
-    if(!values.name) {
-        errors.name = 'El nombre del pokemon es requerido';
-    } else if (!/^[a-zA-Z]+$/.test(values.name)) {
-        errors.name = 'Nombre del pokemon inválido: se requiere usar solo letras y sin espacios.'
-    };
+  if (!values.name) {
+    errors.name = 'Name Required'
+  } else if (!/^[a-zA-Z]+$/.test(values.name)) {
+    errors.name = 'Invalid name. Only letters are allowed'
+  };
 
-    if(!values.hp) {
-        errors.hp = 'El campo esta vacio'
-    } else if (!/^[1-9][0-9]?$|^255$/.test(values.hp)) {
-        errors.hp = 'El campo debe ser númerico y stat maximo es de 255'
-    };
+  if (!values.hp) {
+    errors.hp = 'Empty  field'
+  } else if (!/^[1-9][0-9]?$|^255$/.test(parseInt(values.hp))) {
+    errors.hp = 'Field must be integer, and max range 255'
+  };
 
-    if(!values.atk) {
-        errors.atk = 'El campo esta vacio'
-    } else if (!/^[1-9][0-9]?$|^255$/.test(values.hp)) {
-        errors.atk = 'El campo debe ser númerico y stat maximo es de 255'
-    };
+  if (!values.atk) {
+    errors.atk = 'Empty  field'
+  } else if (!/^[1-9][0-9]?$|^255$/.test(parseInt(values.hp))) {
+    errors.atk = 'Field must be integer, and max range 255'
+  };
 
-    if(!values.def) {
-        errors.def = 'El campo esta vacio'
-    } else if (!/^[1-9][0-9]?$|^255$/.test(values.def)) {
-        errors.def = 'El campo debe ser númerico y stat maximo es de 255'
-    };
+  if (!values.def) {
+    errors.def = 'Empty  field'
+  } else if (!/^[1-9][0-9]?$|^255$/.test(parseInt(values.def))) {
+    errors.def = 'Field must be integer, and max range 255'
+  };
 
-    if(!values.spc_atk) {
-        errors.spc_atk = 'El campo esta vacio'
-    } else if (!/^[1-9][0-9]?$|^255$/.test(values.spc_atk)) {
-        errors.spc_atk = 'El campo debe ser númerico y stat maximo es de 255'
-    };
+  if (!values.spc_atk) {
+    errors.spc_atk = 'Empty  field'
+  } else if (!/^[1-9][0-9]?$|^255$/.test(parseInt(values.spc_atk))) {
+    errors.spc_atk = 'Field must be integer, and max range 255'
+  };
 
-    if(!values.spc_def) {
-        errors.spc_def = 'El campo esta vacio'
-    } else if (!/^[1-9][0-9]?$|^255$/.test(values.spc_def)) {
-        errors.spc_def = 'El campo debe ser númerico y stat maximo es de 255'
-    };
+  if (!values.spc_def) {
+    errors.spc_def = 'Empty  field'
+  } else if (!/^[1-9][0-9]?$|^255$/.test(parseInt(values.spc_def))) {
+    errors.spc_def = 'Field must be integer, and max range 255'
+  };
 
-    if(!values.spd) {
-        errors.spd = 'El campo esta vacio'
-    } else if (!/^[1-9][0-9]?$|^255$/.test(values.spd)) {
-        errors.spd = 'El campo debe ser númerico y stat maximo es de 255'
-    };
+  if (!values.spd) {
+    errors.spd = 'Empty  field'
+  } else if (!/^[1-9][0-9]?$|^255$/.test(parseInt(values.spd))) {
+    errors.spd = 'Field must be integer, and max range 255'
+  };
 
-    if(!values.hgt) {
-        errors.hgt = 'El campo esta vacio'
-    } else if (!/^[0-9]+$/.test(values.hgt)) {
-        errors.hgt = 'El campo debe ser númerico'
-    };
+  if (!values.hgt) {
+    errors.hgt = 'Empty  field'
+  } else if (!/^[0-9]+$/.test(values.hgt)) {
+    errors.hgt = 'Field must be integer'
+  };
 
-    if(!values.wdt) {
-        errors.wdt = 'El campo esta vacio'
-    } else if (!/^[0-9]+$/.test(values.wdt)) {
-        errors.wdt = 'El campo debe ser númerico'
-    };
+  if (!values.wdt) {
+    errors.wdt = 'Empty  field'
+  } else if (!/^[0-9]+$/.test(values.wdt)) {
+    errors.wdt = 'Field must be integer'
+  };
 
-    return errors
-};
+  return errors
+}
 
-export default validate;
+export default validate

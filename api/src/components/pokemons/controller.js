@@ -129,7 +129,7 @@ const CreateNewPokemon = async (pokemon) => {
     types
   } = pokemon
 
-  if (!name) { return 'ERROR: Se requiere un nombre.' } else {
+  if (!name) { return 'ERROR: Name is Required.' } else {
     try {
       const newPokemon = await PokemonsModel.create({
         name,
@@ -153,7 +153,7 @@ const CreateNewPokemon = async (pokemon) => {
         newPokemon.addType(findType)
       })
 
-      return `El pokemon ${name} fue creado exitosamente`
+      return `Pokemon ${name} successfully created`
     } catch (error) {
       return `ERROR: ${error}`
     }

@@ -1,13 +1,13 @@
-const express = require('express');
-const server = express.Router();
-const store = require('./store');
+const express = require('express')
+const server = express.Router()
+const store = require('./store')
 
-const { responseTypes } = store;
+const { responseTypes } = store
 
 server.get('/', async (req, res) => {
-    const response = await responseTypes();
+  const response = await responseTypes()
 
-    res.json(response)
-});
+  res.json(response)
+})
 
-module.exports = server;
+module.exports = server

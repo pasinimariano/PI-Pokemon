@@ -32,7 +32,7 @@ server.get('/', async (req, res, next) => {
 
 server.get('/:id', async (req, res) => {
   const { id } = req.params
-  const error = 'ERROR: el id debe ser un valor numérico'
+  const error = 'ERROR: Id must be an Integer'
 
   if (isNaN(parseInt(id))) {
     res.status(400).send(error)
